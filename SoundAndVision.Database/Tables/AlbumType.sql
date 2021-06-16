@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[AlbumType]
+(
+	[Id] INT NOT NULL IDENTITY,
+	[Name] NVARCHAR(50) NOT NULL,
+	
+	CONSTRAINT [PK_AlbumType] PRIMARY KEY ([Id]),
+	CONSTRAINT [UQ_AlbumType_Name] UNIQUE ([Name])
+);
