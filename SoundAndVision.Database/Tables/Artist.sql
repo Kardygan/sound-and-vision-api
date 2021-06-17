@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(100) NOT NULL,
-	[Picture] VARBINARY(MAX),
+	[Picture] NVARCHAR(MAX),
 	[Alias] NVARCHAR(300),
 	[StartDate] DATE NOT NULL,
 	[EndDate] DATE,

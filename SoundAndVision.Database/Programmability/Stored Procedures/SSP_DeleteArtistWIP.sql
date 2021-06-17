@@ -1,4 +1,4 @@
-﻿-- WORK IN PROGRESS
+﻿-- WORK IN PROGRESS!
 -- Deleting an artist has a impact on many tables.
 
 CREATE PROCEDURE [dbo].[SSP_DeleteArtist]
@@ -22,6 +22,6 @@ BEGIN
 		END TRY
 		BEGIN CATCH
 			ROLLBACK;
-			THROW 51000, N'Artist could not been deleted!', 1;
+			THROW 51000, N'Artist could not be deleted!', 1;
 		END CATCH
 END;

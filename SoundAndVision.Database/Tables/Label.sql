@@ -2,10 +2,10 @@
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(100) NOT NULL,
-	[Picture] VARBINARY(MAX),
+	[Picture] NVARCHAR(MAX),
 	[Location] NVARCHAR(50) NOT NULL,
 	[FoundationYear] SMALLINT NOT NULL,
 
 	CONSTRAINT [PK_Label] PRIMARY KEY ([Id]),
-	CONSTRAINT [UQ_Label_Name] UNIQUE ([Name])
+	CONSTRAINT [UK_Label_Name] UNIQUE ([Name])
 );

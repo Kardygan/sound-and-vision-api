@@ -72,16 +72,20 @@
     <Build Include="Tables\AlbumGenre.sql" />
     <Build Include="Tables\Artist.sql" />
     <Build Include="Tables\ArtistFormation.sql" />
-    <Build Include="Programmability\Stored Procedures\SSP_AddArtist.sql" />
-    <Build Include="Programmability\Stored Procedures\SSP_DeleteArtist.sql" />
+    <Build Include="Programmability\Stored Procedures\SSP_CreateArtist.sql" />
+    <Build Include="Programmability\Stored Procedures\SSP_DeleteArtistWIP.sql" />
     <Build Include="Tables\AlbumArtist.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_UpdateArtist.sql" />
-    <Build Include="Programmability\Stored Procedures\SSP_AddLabel.sql" />
-    <Build Include="Programmability\Stored Procedures\SSP_AddGenre.sql" />
+    <Build Include="Programmability\Stored Procedures\SSP_CreateLabel.sql" />
+    <Build Include="Programmability\Stored Procedures\SSP_CreateGenre.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_DeleteGenre.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_UpdateGenre.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_DeleteLabel.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_UpdateLabel.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\UserRole.sql" />
+    <Build Include="Programmability\Functions\Scalar-valued Functions\SSF_GetSecretKey.sql" />
+    <Build Include="Programmability\Stored Procedures\SSP_CreateUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

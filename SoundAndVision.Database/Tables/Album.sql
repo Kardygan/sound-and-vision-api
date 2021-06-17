@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(250) NOT NULL,
-	[Cover] VARBINARY(MAX),
+	[Cover] NVARCHAR(MAX),
 	[ReleaseDate] DATE,
 	[Description] NVARCHAR(4000),
 	[LabelId] INT,

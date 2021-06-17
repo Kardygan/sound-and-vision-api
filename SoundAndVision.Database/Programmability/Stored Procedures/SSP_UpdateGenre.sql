@@ -9,6 +9,6 @@ BEGIN
 		RETURN 0
 	END TRY
 	BEGIN CATCH
-		THROW 51000, N'Genre could not been updated!', 1;
+		THROW 51000, N'Genre could not be updated!', 1;
 	END CATCH
 END;

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SSP_AddLabel]
+﻿CREATE PROCEDURE [dbo].[SSP_CreateLabel]
 	@Name NVARCHAR(100),
 	@Picture VARBINARY(MAX),
 	@Location NVARCHAR(50),
@@ -12,6 +12,6 @@ BEGIN
 		RETURN 0
 	END TRY
 	BEGIN CATCH
-		THROW 51000, N'Label could not been added!', 1;
+		THROW 51000, N'Label could not be added!', 1;
 	END CATCH
 END;

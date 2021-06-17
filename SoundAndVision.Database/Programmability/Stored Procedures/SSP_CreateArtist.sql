@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[SSP_AddArtist]
+﻿CREATE PROCEDURE [dbo].[SSP_CreateArtist]
 	@Name NVARCHAR(100),
 	@Picture VARBINARY(MAX),
 	@Alias NVARCHAR(300),
@@ -9,11 +9,11 @@ AS
 BEGIN
 	BEGIN TRY
 		INSERT INTO [dbo].[Artist]([Name], [Picture], [Alias], [StartDate], [EndDate], [Description])
-			VALUES (@Name, @Picture, @Alias, @StartDate, @EndDate, @Description)
+			VALUES (@Name, @Picture, @Alias, @StartDate, @EndDate, @Description);
 
 		RETURN 0
 	END TRY
 	BEGIN CATCH
-		THROW 51000, N'Artist could not been added!', 1;
+		THROW 51000, N'Artist could not be added!', 1;
 	END CATCH
 END;

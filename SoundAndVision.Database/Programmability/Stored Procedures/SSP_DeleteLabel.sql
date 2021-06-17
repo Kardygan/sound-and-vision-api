@@ -12,6 +12,6 @@ BEGIN
 		END TRY
 		BEGIN CATCH
 			ROLLBACK;
-			THROW 51000, N'Label could not been deleted!', 1;
+			THROW 51000, N'Label could not be deleted!', 1;
 		END CATCH
 END;

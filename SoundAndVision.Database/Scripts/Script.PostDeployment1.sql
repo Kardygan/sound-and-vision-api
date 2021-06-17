@@ -10,6 +10,16 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+-- Add main roles.
+SET IDENTITY_INSERT [dbo].[UserRole] ON;
+INSERT INTO [dbo].[UserRole]([Id], [Name]) VALUES
+    (1, 'Admin'),
+    (2, 'Moderator'),
+    (3, 'User');
+SET IDENTITY_INSERT [dbo].[UserRole] OFF;
+GO
+
+-- Add main album types.
 INSERT INTO [dbo].[AlbumType]([Name]) VALUES
     ('Studio'),
     ('Live'),
@@ -19,6 +29,7 @@ INSERT INTO [dbo].[AlbumType]([Name]) VALUES
     ('Compilation');
 GO
 
+-- Add main genres.
 INSERT INTO [dbo].[Genre]([Name]) VALUES
     ('Ambient'),
     ('Blues'),
@@ -71,4 +82,8 @@ INSERT INTO [dbo].[AlbumGenre]([AlbumId], [GenreId]) VALUES
     (1, 9),
     (2, 18),
     (2, 12);
+GO
+
+-- Test user.
+EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', '../Uploads/All/default_avatar.jpg', 'Belgique', 'I''m the boss here!';
 GO
