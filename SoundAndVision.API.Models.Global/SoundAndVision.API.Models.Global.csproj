@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>

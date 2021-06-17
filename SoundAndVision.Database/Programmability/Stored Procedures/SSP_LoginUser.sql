@@ -15,10 +15,10 @@ BEGIN
 			DECLARE @PasswordHash BINARY(64);
 			SET @PasswordHash = HASHBYTES('SHA2_512', CONCAT(@Salt, @Key, @Password, @Salt));
 
-			SELECT [Id], [Username], [Email], [RoleId]
-			FROM [dbo].[User]
-			WHERE [Email] = @Email
-				AND [Password] = @PasswordHash;
+			DECLARE @UserId INT;
+			SELECT @UserId = [Id] FROM [dbo].[User] WHERE [Email] = @Email AND [Password] = @PasswordHash;
+
+			SELECT * FROM [dbo].[V_UserProfileInfo] WHERE [Id] = @UserId;
 		END;
 
 		RETURN 0;

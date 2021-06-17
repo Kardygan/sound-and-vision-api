@@ -20,3 +20,12 @@
 	CONSTRAINT [UK_User_Username] UNIQUE ([Username]),
 	CONSTRAINT [UK_User_Email] UNIQUE ([Email])
 );
+GO
+
+CREATE TRIGGER [dbo].[TR_DeleteUser]
+	ON [dbo].[User]
+INSTEAD OF DELETE
+AS
+BEGIN
+	UPDATE [dbo].[User] SET [IsActive] = 0;
+END;
