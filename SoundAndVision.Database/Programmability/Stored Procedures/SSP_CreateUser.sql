@@ -21,13 +21,15 @@ BEGIN
 		SET @Key = [dbo].[SSF_GetSecretKey]();
 
 		-- Password hash.
-		DECLARE @PasswordHash VARBINARY(64);
+		DECLARE @PasswordHash BINARY(64);
 		SET @PasswordHash = HASHBYTES('SHA2_512', CONCAT(@Salt, @Key, @Password, @Salt));
 
 		-- User registration.
 		INSERT INTO [dbo].[User]([Username], [FirstName], [LastName], [Email], [Password], [Salt], [Picture], [Location], [Bio])
 		OUTPUT [inserted].[Id]
 			VALUES (@Username, @FirstName, @LastName, @Email, @PasswordHash, @Salt, @Picture, @Location, @Bio);
+
+		RETURN 0;
 	END TRY
 	BEGIN CATCH
 		THROW 51000, N'User could not be registered!', 1;
