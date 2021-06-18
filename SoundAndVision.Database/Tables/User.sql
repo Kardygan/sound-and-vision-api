@@ -7,11 +7,11 @@
 	[Email] NVARCHAR(384) NOT NULL,
 	[Password] BINARY(64) NOT NULL,
 	[Salt] NVARCHAR(100) NOT NULL,
-	[Picture] NVARCHAR(MAX) DEFAULT '../Uploads/All/default_avatar.jpg',
+	[Picture] NVARCHAR(MAX) NOT NULL,
 	[Location] NVARCHAR(50),
 	[Bio] NVARCHAR(4000),
 	[RegistrationDate] DATETIME2 NOT NULL DEFAULT (SYSDATETIME()),
-	[IsActive] BIT NOT NULL DEFAULT 1,
+	[IsActive] BIT NOT NULL DEFAULT 'TRUE',
 	[RoleId] INT NOT NULL DEFAULT 3,
 
 	CONSTRAINT [PK_User] PRIMARY KEY ([Id]),

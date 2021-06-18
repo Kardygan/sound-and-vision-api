@@ -8,6 +8,7 @@ namespace SoundAndVision.API.Models.Client.Mappers
 {
     internal static class GlobalClientMapper
     {
+        // User mapper.
         internal static GE.User ToUserGlobal(this User user)
         {
             return new GE.User()

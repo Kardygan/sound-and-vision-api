@@ -27,7 +27,7 @@ BEGIN
 		-- User registration.
 		INSERT INTO [dbo].[User]([Username], [FirstName], [LastName], [Email], [Password], [Salt], [Picture], [Location], [Bio])
 		OUTPUT [inserted].[Id]
-			VALUES (@Username, @FirstName, @LastName, @Email, @PasswordHash, @Salt, @Picture, @Location, @Bio);
+			VALUES (@Username, @FirstName, @LastName, @Email, @PasswordHash, @Salt, ISNULL(@Picture, '../Uploads/All/default_avatar.jpg'), @Location, @Bio);
 
 		RETURN 0;
 	END TRY

@@ -152,7 +152,6 @@ INSERT INTO [dbo].[Genre]([Name]) VALUES
     ('Rock'),
     ('Acoustic Rock'),
     ('Alternative Rock'),
-    ('Art Punk'),
     ('Art Rock'),
     ('Blues Rock'),
     ('Comedy Rock'),
@@ -169,7 +168,6 @@ INSERT INTO [dbo].[Genre]([Name]) VALUES
     ('Math Rock'),
     ('New Wave'),
     ('Noise Rock'),
-    ('Post-Punk'),
     ('Post-Rock'),
     ('Progressive Rock'),
     ('Proto-Punk'),
@@ -219,5 +217,5 @@ GO
 
 -- Test users.
 EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', '../Uploads/All/default_avatar.jpg', 'Belgique', 'I''m the boss here!';
-EXEC [dbo].[SSP_CreateUser] 'MadMan', 'John', 'Doe', 'john.doe@gmail.com', '@test4321!', '../Uploads/All/default_avatar.jpg', 'États-Unis', 'Oh Long Johnson!';
+EXEC [dbo].[SSP_CreateUser] 'MadMan', NULL, NULL, 'john.doe@gmail.com', '@test4321!', NULL, NULL, NULL;
 GO
