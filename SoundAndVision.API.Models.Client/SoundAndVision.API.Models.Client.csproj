@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SoundAndVision.API.Models.Global\SoundAndVision.API.Models.Global.csproj" />
     <ProjectReference Include="..\SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Tools.Connection.Database" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

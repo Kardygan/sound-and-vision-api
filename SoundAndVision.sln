@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundAndVision.API", "Sound
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SoundAndVision.Database", "SoundAndVision.Database\SoundAndVision.Database.sqlproj", "{BA0534FC-6874-42BA-B552-C62755398A0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAndVision.API.Repositories", "SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj", "{154ED835-BB89-4298-804A-AC9573CEE529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundAndVision.API.Repositories", "SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj", "{154ED835-BB89-4298-804A-AC9573CEE529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAndVision.API.Models.Global", "SoundAndVision.API.Models.Global\SoundAndVision.API.Models.Global.csproj", "{FBC881CD-586F-49FB-9008-C0CBD92AE28C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundAndVision.API.Models.Global", "SoundAndVision.API.Models.Global\SoundAndVision.API.Models.Global.csproj", "{FBC881CD-586F-49FB-9008-C0CBD92AE28C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundAndVision.API.Models.Client", "SoundAndVision.API.Models.Client\SoundAndVision.API.Models.Client.csproj", "{583A3FF6-694A-421C-BFD4-03A88E5AD13E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{FBC881CD-586F-49FB-9008-C0CBD92AE28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC881CD-586F-49FB-9008-C0CBD92AE28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC881CD-586F-49FB-9008-C0CBD92AE28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{583A3FF6-694A-421C-BFD4-03A88E5AD13E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{583A3FF6-694A-421C-BFD4-03A88E5AD13E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{583A3FF6-694A-421C-BFD4-03A88E5AD13E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{583A3FF6-694A-421C-BFD4-03A88E5AD13E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

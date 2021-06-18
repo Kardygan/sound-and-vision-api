@@ -7,7 +7,7 @@
 	[Email] NVARCHAR(384) NOT NULL,
 	[Password] BINARY(64) NOT NULL,
 	[Salt] NVARCHAR(100) NOT NULL,
-	[Picture] NVARCHAR(MAX),
+	[Picture] NVARCHAR(MAX) DEFAULT '../Uploads/All/default_avatar.jpg',
 	[Location] NVARCHAR(50),
 	[Bio] NVARCHAR(4000),
 	[RegistrationDate] DATETIME2 NOT NULL DEFAULT (SYSDATETIME()),
