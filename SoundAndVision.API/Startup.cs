@@ -7,10 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using GE = SoundAndVision.API.Models.Global.Entities;
+using GR = SoundAndVision.API.Models.Global.Repositories;
+using CE = SoundAndVision.API.Models.Client.Entities;
+using CR = SoundAndVision.API.Models.Client.Repositories;
+using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Tools.Connection.Database;
 
 namespace SoundAndVision.API
 {
@@ -32,6 +39,10 @@ namespace SoundAndVision.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SoundAndVision.API", Version = "v1" });
             });
+
+            services.AddSingleton(sp => new Connection(SqlClientFactory.Instance, @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SoundAndVisionDB;Integrated Security=True;"));
+            services.AddSingleton<IUserAuthenticationRepository<GE.User>, GR.UserAuthenticationRepository>();
+            services.AddSingleton<IUserAuthenticationRepository<CE.User>, CR.UserAuthenticationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +59,8 @@ namespace SoundAndVision.API
 
             app.UseRouting();
 
+            app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

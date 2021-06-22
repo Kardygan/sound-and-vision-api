@@ -19,10 +19,17 @@ namespace SoundAndVision.API.Models.Client.Repositories
 
         public int Register(User user)
         {
-            int id = _userAuthenticationRepositoryGlobal.Register(user.ToUserGlobal());
-            user.Password = null;
+            try
+            {
+                int id = _userAuthenticationRepositoryGlobal.Register(user.ToUserGlobal());
+                user.Password = null;
 
-            return id;
+                return id;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public User SignIn(string email, string password)

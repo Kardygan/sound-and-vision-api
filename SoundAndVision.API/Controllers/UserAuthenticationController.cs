@@ -7,7 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SoundAndVision.API.Models.Forms;
+using SoundAndVision.API.Models.Entities.Forms;
+using System.Data.SqlClient;
 
 namespace SoundAndVision.API.Controllers
 {
@@ -25,12 +26,23 @@ namespace SoundAndVision.API.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserRegisterForm userRegisterForm)
         {
-            CE.User user = new CE.User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
+            if ((userRegisterForm is null) || !ModelState.IsValid)
+                throw new ArgumentException("Form is null or doesn't respect requirements!");
 
-            if (_repository.Register(user))
-                return Ok();
+            try
+            {
+                CE.User user = new CE.User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
 
-            return BadRequest();
+                return Ok(_userAuthenticationRepositoryClient.Register(user));
+            }
+            catch (ArgumentException aex)
+            {
+                return BadRequest(aex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

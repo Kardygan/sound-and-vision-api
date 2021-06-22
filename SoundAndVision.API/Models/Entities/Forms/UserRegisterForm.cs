@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SoundAndVision.API.Models.Forms
+namespace SoundAndVision.API.Models.Entities.Forms
 {
     public class UserRegisterForm
     {
         [Required]
-        [StringLength(30)]
+        [StringLength(20, MinimumLength = 3)]
         public string Username { get; set; }
         [StringLength(50)]
         public string FirstName { get; set; }

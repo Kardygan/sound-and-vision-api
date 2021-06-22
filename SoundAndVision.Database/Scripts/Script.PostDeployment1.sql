@@ -217,5 +217,5 @@ GO
 
 -- Test users.
 EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', '../Uploads/All/default_avatar.jpg', 'Belgique', 'I''m the boss here!';
-EXEC [dbo].[SSP_CreateUser] 'MadMan', NULL, NULL, 'john.doe@gmail.com', '@test4321!', NULL, NULL, NULL;
+EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'john.doe@gmail.com', '@test1234!', NULL, NULL, NULL;
 GO

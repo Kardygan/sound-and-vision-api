@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SoundAndVision.API.Models.Forms
+namespace SoundAndVision.API.Models.Entities.Forms
 {
     public class UserSignInForm
     {
