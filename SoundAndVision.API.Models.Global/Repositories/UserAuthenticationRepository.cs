@@ -18,7 +18,7 @@ namespace SoundAndVision.API.Models.Global.Repositories
             _connection = connection;
         }
 
-        public bool Register(User user)
+        public int Register(User user)
         {
             Command command = new Command("SSP_CreateUser", true);
             command.AddParameter("@Username", user.Username);
@@ -30,10 +30,10 @@ namespace SoundAndVision.API.Models.Global.Repositories
             command.AddParameter("@Location", user.Location);
             command.AddParameter("@Bio", user.Bio);
 
-            int rows = _connection.ExecuteNonQuery(command);
+            int id = (int)_connection.ExecuteScalar(command);
             user.Password = null;
 
-            return rows == 1;
+            return id;
         }
 
         public User SignIn(string email, string password)

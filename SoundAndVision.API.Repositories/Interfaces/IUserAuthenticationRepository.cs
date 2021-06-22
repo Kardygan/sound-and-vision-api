@@ -6,7 +6,7 @@ namespace SoundAndVision.API.Repositories.Interfaces
 {
     public interface IUserAuthenticationRepository<TUser>
     {
-        bool Register(TUser user);
+        int Register(TUser user);
         TUser SignIn(string email, string password);
     }
 }

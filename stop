@@ -1,0 +1,41 @@
+[33mcommit b648d8363fd728724109657a436a8eeb4ad2ac58[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Fri Jun 18 14:22:10 2021 +0200
+
+    Update global & client models
+
+[33mcommit f69c2084fcc5943b6c37a09919f7716b17dc8b76[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Fri Jun 18 12:13:45 2021 +0200
+
+    Add Client models & Improve Global models
+
+[33mcommit f049e8bbddbc7a705807ab667c1791a8c69b9fb5[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Thu Jun 17 17:01:11 2021 +0200
+
+    Add User global entity
+
+[33mcommit 3cf460dbccafb874815e31f75d2738bea0b7cec3[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Thu Jun 17 16:53:45 2021 +0200
+
+    Update genres list in post deployment script
+
+[33mcommit b111012bc34127e85d2fba09d2792b96a78f3064[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Thu Jun 17 15:12:01 2021 +0200
+
+    Add user authentication repository
+
+[33mcommit 826b8bbe51d9ecbeae3a817009f03d4112b52420[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Thu Jun 17 14:16:09 2021 +0200
+
+    Add new tables, stored procedures and functions in database
+
+[33mcommit 1407e7c3aeb73cb26e82f592348afe4cbf26f4d1[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: tommy <k.sn4ily@gmail.com>
+Date:   Wed Jun 16 14:04:07 2021 +0200
+
+    Initial commit

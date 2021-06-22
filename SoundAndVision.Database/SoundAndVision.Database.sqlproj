@@ -87,7 +87,8 @@
     <Build Include="Programmability\Functions\Scalar-valued Functions\SSF_GetSecretKey.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_CreateUser.sql" />
     <Build Include="Programmability\Stored Procedures\SSP_LoginUser.sql" />
-    <Build Include="Views\V_UserProfileInfo.sql" />
+    <Build Include="Views\V_UserInfo.sql" />
+    <Build Include="Programmability\Functions\Scalar-valued Functions\SSF_SaltAndHash.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

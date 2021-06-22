@@ -17,12 +17,12 @@ namespace SoundAndVision.API.Models.Client.Repositories
             _userAuthenticationRepositoryGlobal = userAuthenticationRepositoryGlobal;
         }
 
-        public bool Register(User user)
+        public int Register(User user)
         {
-            bool result = _userAuthenticationRepositoryGlobal.Register(user.ToUserGlobal());
+            int id = _userAuthenticationRepositoryGlobal.Register(user.ToUserGlobal());
             user.Password = null;
 
-            return result;
+            return id;
         }
 
         public User SignIn(string email, string password)

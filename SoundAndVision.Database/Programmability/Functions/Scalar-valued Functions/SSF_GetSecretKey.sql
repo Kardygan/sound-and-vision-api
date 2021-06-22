@@ -1,5 +1,4 @@
 ﻿CREATE FUNCTION [dbo].[SSF_GetSecretKey]()
-
 RETURNS NVARCHAR(2048)
 AS
 BEGIN

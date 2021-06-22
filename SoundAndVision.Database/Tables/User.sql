@@ -6,7 +6,7 @@
 	[LastName] NVARCHAR(50),
 	[Email] NVARCHAR(384) NOT NULL,
 	[Password] BINARY(64) NOT NULL,
-	[Salt] NVARCHAR(100) NOT NULL,
+	[Salt] NVARCHAR(108) NOT NULL,
 	[Picture] NVARCHAR(MAX) NOT NULL,
 	[Location] NVARCHAR(50),
 	[Bio] NVARCHAR(4000),

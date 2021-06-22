@@ -8,4 +8,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SoundAndVision.API.Models.Client\SoundAndVision.API.Models.Client.csproj" />
+    <ProjectReference Include="..\SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>

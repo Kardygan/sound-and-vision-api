@@ -15,13 +15,13 @@ namespace SoundAndVision.API.Models.Global.Mappers
             {
                 Id = (int)dataRecord["Id"],
                 Username = (string)dataRecord["Username"],
-                FirstName = (dataRecord["FirstName"] != DBNull.Value) ? (string)dataRecord["FirstName"] : null,
-                LastName = (dataRecord["LastName"] != DBNull.Value) ? (string)dataRecord["LastName"] : null,
+                FirstName = (dataRecord["FirstName"] is DBNull) ? null : (string)dataRecord["FirstName"],
+                LastName = (dataRecord["LastName"] is DBNull) ? null : (string)dataRecord["LastName"],
                 Email = (string)dataRecord["Email"],
                 Password = null,
                 Picture = (string)dataRecord["Picture"],
-                Location = (dataRecord["Location"] != DBNull.Value) ? (string)dataRecord["Location"] : null,
-                Bio = (dataRecord["Bio"] != DBNull.Value) ? (string)dataRecord["Bio"] : null,
+                Location = (dataRecord["Location"] is DBNull) ? null : (string)dataRecord["Location"],
+                Bio = (dataRecord["Bio"] is DBNull) ? null : (string)dataRecord["Bio"],
                 RegistrationDate = (DateTime)dataRecord["RegistrationDate"],
                 IsActive = (bool)dataRecord["IsActive"],
                 RoleId = (int)dataRecord["RoleId"]
