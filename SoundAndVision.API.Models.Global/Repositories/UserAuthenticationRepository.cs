@@ -50,11 +50,18 @@ namespace SoundAndVision.API.Models.Global.Repositories
 
         public User SignIn(string email, string password)
         {
-            Command command = new Command("SSP_LoginUser", true);
-            command.AddParameter("@Email", email);
-            command.AddParameter("@Password", password);
+            try
+            {
+                Command command = new Command("SSP_LoginUser", true);
+                command.AddParameter("@Email", email);
+                command.AddParameter("@Password", password);
 
-            return _connection.ExecuteReader(command, (dataRecord) => dataRecord.ToUserGlobal()).SingleOrDefault();
+                return _connection.ExecuteReader(command, (dataRecord) => dataRecord.ToUserGlobal()).SingleOrDefault();
+            }
+            catch (SqlException sex)
+            {
+                throw new Exception(sex.Message);
+            }
         }
     }
 }

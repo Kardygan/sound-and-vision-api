@@ -34,7 +34,14 @@ namespace SoundAndVision.API.Models.Client.Repositories
 
         public User SignIn(string email, string password)
         {
-            return _userAuthenticationRepositoryGlobal.SignIn(email, password).ToUserClient();
+            try
+            {
+                return _userAuthenticationRepositoryGlobal.SignIn(email, password).ToUserClient();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

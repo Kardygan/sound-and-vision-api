@@ -7,7 +7,7 @@ BEGIN
 		DECLARE @Salt NVARCHAR(108);
 		SELECT @Salt = [Salt] FROM [dbo].[User] WHERE [Email] = @Email AND [IsActive] = 'TRUE';
 
-		IF @Salt IS NOT NULL
+		IF (@Salt IS NOT NULL)
 		BEGIN
 			DECLARE @PasswordHash BINARY(64);
 			SET @PasswordHash = [dbo].[SSF_SaltAndHash](@Password, @Salt);
@@ -15,12 +15,15 @@ BEGIN
 			DECLARE @UserId INT;
 			SELECT @UserId = [Id] FROM [dbo].[User] WHERE [Email] = @Email AND [Password] = @PasswordHash;
 
-			SELECT * FROM [dbo].[V_UserInfo] WHERE [Id] = @UserId;
+			IF (@UserId IS NOT NULL)
+				SELECT * FROM [dbo].[V_UserInfo] WHERE [Id] = @UserId;
+			ELSE
+				THROW 51000, N'The email or password is incorrect!', 1;
 		END;
-
-		RETURN 0;
+		ELSE
+			THROW 51000, N'The email or password is incorrect!', 1;
 	END TRY
 	BEGIN CATCH
-		THROW 51000, N'User could not be signed in!', 1;
+		THROW;
 	END CATCH
 END;
