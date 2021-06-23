@@ -15,7 +15,9 @@ SET IDENTITY_INSERT [dbo].[UserRole] ON;
 INSERT INTO [dbo].[UserRole]([Id], [Name]) VALUES
     (1, 'Admin'),
     (2, 'Moderator'),
-    (3, 'User');
+    (3, 'Contributor'),
+    (4, 'User');
+
 SET IDENTITY_INSERT [dbo].[UserRole] OFF;
 GO
 
@@ -192,10 +194,8 @@ INSERT INTO [dbo].[Label]([Name], [Location], [FoundationYear]) VALUES
 GO
 
 -- Test albums.
-INSERT INTO [dbo].[Artist]([Name], [StartDate]) VALUES
-    ('David Bowie', '1947-01-08'),
-    ('Risitas', '1952-12-19');
-GO
+EXEC [dbo].[SSP_CreateArtist] 'David Bowie', NULL, 'David Robert Jones', '1947-01-08', '2016-01-10', 'He was a space invader.';
+EXEC [dbo].[SSP_CreateArtist] 'Nirvana', NULL, NULL, '1987', NULL, NULL;
 
 INSERT INTO [dbo].[Album]([Name], [LabelId], [AlbumTypeId]) VALUES
     ('Ziggy Stardust', 1, 1),

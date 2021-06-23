@@ -12,7 +12,7 @@
 	[Bio] NVARCHAR(4000),
 	[RegistrationDate] DATETIME2 NOT NULL DEFAULT (SYSDATETIME()),
 	[IsActive] BIT NOT NULL DEFAULT 'TRUE',
-	[RoleId] INT NOT NULL DEFAULT 3,
+	[RoleId] INT NOT NULL DEFAULT 4,
 
 	CONSTRAINT [PK_User] PRIMARY KEY ([Id]),
 	CONSTRAINT [FK_User_UserRole_RoleId] FOREIGN KEY ([RoleId])
@@ -27,5 +27,5 @@ CREATE TRIGGER [dbo].[TR_DeleteUser]
 INSTEAD OF DELETE
 AS
 BEGIN
-	UPDATE [dbo].[User] SET [IsActive] = 0;
+	UPDATE [dbo].[User] SET [IsActive] = 0 WHERE [Id] IN (SELECT [Id] FROM deleted);
 END;

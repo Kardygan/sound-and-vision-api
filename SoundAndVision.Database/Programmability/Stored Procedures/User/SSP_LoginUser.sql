@@ -16,7 +16,7 @@ BEGIN
 			SELECT @UserId = [Id] FROM [dbo].[User] WHERE [Email] = @Email AND [Password] = @PasswordHash;
 
 			IF (@UserId IS NOT NULL)
-				SELECT * FROM [dbo].[V_UserInfo] WHERE [Id] = @UserId;
+				EXEC [dbo].[SSP_GetUserById] @UserId;
 			ELSE
 				THROW 51000, N'The email or password is incorrect!', 1;
 		END;
