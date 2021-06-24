@@ -27,5 +27,20 @@ namespace SoundAndVision.API.Models.Global.Mappers
                 RoleId = (int)dataRecord["RoleId"]
             };
         }
+
+        // Artist mapper.
+        internal static Artist ToArtistGlobal(this IDataRecord dataRecord)
+        {
+            return new Artist()
+            {
+                Id = (int)dataRecord["Id"],
+                Name = (string)dataRecord["Name"],
+                Picture = (string)dataRecord["Picture"],
+                Alias = (dataRecord["Alias"] is DBNull) ? null : (string)dataRecord["Alias"],
+                StartDate = (DateTime)dataRecord["StartDate"],
+                EndDate = (dataRecord["EndDate"] is DBNull) ? (DateTime?)null : (DateTime)dataRecord["EndDate"],
+                Description = (dataRecord["Description"] is DBNull) ? null : (string)dataRecord["Description"]
+            };
+        }
     }
 }

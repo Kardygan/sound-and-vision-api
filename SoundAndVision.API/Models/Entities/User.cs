@@ -18,5 +18,6 @@ namespace SoundAndVision.API.Models.Entities
         public DateTime RegistrationDate { get; set; }
         public bool IsActive { get; set; }
         public int RoleId { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -10,20 +10,26 @@ using System.Threading.Tasks;
 using SoundAndVision.API.Models.Entities.Forms;
 using System.Data.SqlClient;
 using SoundAndVision.API.Models.Mappers;
+using Microsoft.AspNetCore.Authorization;
+using SoundAndVision.API.Infrastructure.Interfaces;
 
 namespace SoundAndVision.API.Controllers
 {
+    [Authorize]
     [Route("api/authentication")]
     [ApiController]
     public class UserAuthenticationController : ControllerBase
     {
         private IUserAuthenticationRepository<CE.User> _userAuthenticationRepositoryClient;
+        private ITokenManager _tokenManager;
 
-        public UserAuthenticationController(IUserAuthenticationRepository<CE.User> userAuthenticationRepositoryClient)
+        public UserAuthenticationController(IUserAuthenticationRepository<CE.User> userAuthenticationRepositoryClient, ITokenManager tokenManager)
         {
             _userAuthenticationRepositoryClient = userAuthenticationRepositoryClient;
+            _tokenManager = tokenManager;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public IActionResult Register([FromBody] UserRegisterForm userRegisterForm)
         {
@@ -46,6 +52,7 @@ namespace SoundAndVision.API.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public IActionResult SignIn([FromBody] UserSignInForm userSignInForm)
         {
@@ -56,7 +63,7 @@ namespace SoundAndVision.API.Controllers
             {
                 User user = _userAuthenticationRepositoryClient.SignIn(userSignInForm.Email, userSignInForm.Password).ToUserAPI();
 
-                return Ok(user);
+                return Ok(_tokenManager.Authenticate(user));
             }
             catch (ArgumentException aex)
             {

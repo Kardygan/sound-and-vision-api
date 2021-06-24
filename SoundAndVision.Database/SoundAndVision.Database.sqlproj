@@ -95,6 +95,8 @@
     <Build Include="Programmability\Stored Procedures\Genre\SSP_UpdateGenre.sql" />
     <Build Include="Programmability\Stored Procedures\Label\SSP_UpdateLabel.sql" />
     <Build Include="Programmability\Functions\Scalar-valued Functions\SSF_SetDefaultAvatar.sql" />
+    <Build Include="Programmability\Stored Procedures\Artist\SSP_GetArtistById.sql" />
+    <Build Include="Programmability\Stored Procedures\Artist\SSP_GetAllArtist.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
