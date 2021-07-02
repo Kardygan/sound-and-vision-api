@@ -216,6 +216,16 @@ INSERT INTO [dbo].[AlbumGenre]([AlbumId], [GenreId]) VALUES
 GO
 
 -- Test users.
-EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', '../Uploads/All/default_avatar.jpg', 'Belgique', 'I''m the boss here!';
-EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'john.doe@gmail.com', '@test1234!', NULL, NULL, NULL;
+EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', 'Uploads/Avatar/ohlongjohnson.png', 'Belgique', 'I''m the boss here!';
+EXEC [dbo].[SSP_CreateUser] 'DoomSlayer', NULL, NULL, 'doom@gmail.com', '@test1234!', NULL, 'Enfer', NULL;
+EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'max.max@gmail.com', '@test1234!', NULL, 'Australie', NULL;
+EXEC [dbo].[SSP_CreateUser] 'Snake', 'S.D', 'Plissken', 's.plissken@gmail.com', '@test1234!', NULL, 'États-Unis', NULL;
+
+GO
+
+-- Test set roles.
+EXEC [dbo].[SSP_SetAdminRole] 1; -- Kardygan
+EXEC [dbo].[SSP_SetModeratorRole] 2; -- DoomSlayer
+EXEC [dbo].[SSP_SetContributorRole] 3; -- MadMax
+EXEC [dbo].[SSP_SetUserRole] 4; -- Snake
 GO

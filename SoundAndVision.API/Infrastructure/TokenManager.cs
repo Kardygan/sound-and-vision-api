@@ -15,7 +15,7 @@ namespace SoundAndVision.API.Infrastructure
     {
         public static string secretKey = @"/rFA4_Xx4<~Q.z[ZqbFYKg}f5k$aU5WN&&VS]]B>K-jC/?Ab$mrC[9NjP_GX*=6nMb-Kh9/wU`8(U(L)gY&?ZYGBn$-)<g}+n32wffZtt.;/7g`^'zC-\eVSCh6rvBds";
         public static string issuer = "localhost:44349"; // API provider.
-        public static string audience = "mysite.com"; // API consumer.
+        public static string audience = "localhost:4200"; // API consumer.
 
         public User Authenticate(User user)
         {

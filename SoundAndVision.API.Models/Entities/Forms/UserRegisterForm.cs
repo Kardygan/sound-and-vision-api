@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
 namespace SoundAndVision.API.Models.Entities.Forms
 {
     public class UserRegisterForm
     {
         [Required]
-        [StringLength(20, MinimumLength = 3)]
+        [RegularExpression(@"^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$", ErrorMessage = "Invalid username")]
         public string Username { get; set; }
         [StringLength(50)]
         public string FirstName { get; set; }
@@ -27,7 +26,7 @@ namespace SoundAndVision.API.Models.Entities.Forms
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string PasswordConfirmation { get; set; }
-        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "The image extension must be in .png, .jpg or.gif")]
         public string Picture { get; set; }
         [StringLength(50)]
         public string Location { get; set; }

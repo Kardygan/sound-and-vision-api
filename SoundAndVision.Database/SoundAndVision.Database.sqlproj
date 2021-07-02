@@ -97,11 +97,13 @@
     <Build Include="Programmability\Functions\Scalar-valued Functions\SSF_SetDefaultAvatar.sql" />
     <Build Include="Programmability\Stored Procedures\Artist\SSP_GetArtistById.sql" />
     <Build Include="Programmability\Stored Procedures\Artist\SSP_GetAllArtist.sql" />
+    <Build Include="Programmability\Stored Procedures\User\SSP_GetAllUser.sql" />
+    <Build Include="Programmability\Stored Procedures\User\SSP_SetUserRole.sql" />
+    <Build Include="Programmability\Stored Procedures\User\SSP_SetContributorRole.sql" />
+    <Build Include="Programmability\Stored Procedures\User\SSP_SetModeratorRole.sql" />
+    <Build Include="Programmability\Stored Procedures\User\SSP_SetAdminRole.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SoundAndVision.Database.publish.xml" />
   </ItemGroup>
 </Project>

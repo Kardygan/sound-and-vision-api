@@ -21,7 +21,15 @@ namespace SoundAndVision.API.Models.Global.Repositories
         {
             try
             {
-                throw new NotImplementedException();
+                Command command = new Command("SSP_CreateArtist", true);
+                command.AddParameter("@Name", artist.Name);
+                command.AddParameter("@Picture", artist.Picture);
+                command.AddParameter("@Alias", artist.Alias);
+                command.AddParameter("@StartDate", artist.StartDate);
+                command.AddParameter("@EndDate", artist.EndDate);
+                command.AddParameter("@Description", artist.Description);
+
+                return _connection.ExecuteNonQuery(command) == 1;
             }
             catch (SqlException sex)
             {
@@ -39,7 +47,7 @@ namespace SoundAndVision.API.Models.Global.Repositories
             throw new NotImplementedException();
         }
 
-        public Artist GetAll()
+        public IEnumerable<Artist> Get()
         {
             throw new NotImplementedException();
         }

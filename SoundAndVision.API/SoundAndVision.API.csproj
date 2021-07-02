@@ -14,7 +14,16 @@
   <ItemGroup>
     <ProjectReference Include="..\SoundAndVision.API.Models.Client\SoundAndVision.API.Models.Client.csproj" />
     <ProjectReference Include="..\SoundAndVision.API.Models.Global\SoundAndVision.API.Models.Global.csproj" />
+    <ProjectReference Include="..\SoundAndVision.API.Models\SoundAndVision.API.Models.csproj" />
     <ProjectReference Include="..\SoundAndVision.API.Repositories\SoundAndVision.API.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Uploads\All\" />
+    <Folder Include="Uploads\Albums\" />
+    <Folder Include="Uploads\Artists\" />
+    <Folder Include="Uploads\Avatars\" />
+    <Folder Include="Uploads\Labels\" />
   </ItemGroup>
 
 </Project>

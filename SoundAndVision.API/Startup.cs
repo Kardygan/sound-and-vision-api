@@ -23,6 +23,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SoundAndVision.API.Infrastructure;
 using SoundAndVision.API.Infrastructure.Interfaces;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace SoundAndVision.API
 {
@@ -51,6 +53,9 @@ namespace SoundAndVision.API
 
             services.AddSingleton<IUserAuthenticationRepository<GE.User>, GR.UserAuthenticationRepository>();
             services.AddSingleton<IUserAuthenticationRepository<CE.User>, CR.UserAuthenticationRepository>();
+
+            services.AddSingleton<IUserRepository<GE.User>, GR.UserRepository>();
+            services.AddSingleton<IUserRepository<CE.User>, CR.UserRepository>();
 
             // Roles.
             services.AddAuthorization(options =>
@@ -96,6 +101,13 @@ namespace SoundAndVision.API
             app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "Uploads")),
+                RequestPath = "/Uploads"
+            });
 
             app.UseEndpoints(endpoints =>
             {

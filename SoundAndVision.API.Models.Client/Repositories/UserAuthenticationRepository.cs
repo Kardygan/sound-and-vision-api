@@ -10,7 +10,7 @@ namespace SoundAndVision.API.Models.Client.Repositories
 {
     public class UserAuthenticationRepository : IUserAuthenticationRepository<User>
     {
-        public IUserAuthenticationRepository<GE.User> _userAuthenticationRepositoryGlobal;
+        private IUserAuthenticationRepository<GE.User> _userAuthenticationRepositoryGlobal;
 
         public UserAuthenticationRepository(IUserAuthenticationRepository<GE.User> userAuthenticationRepositoryGlobal)
         {

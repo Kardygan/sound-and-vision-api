@@ -1,17 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SoundAndVision.API.Models.Entities;
+using SoundAndVision.API.Models.Entities.Forms;
+using SoundAndVision.API.Models.Mappers;
 using CE = SoundAndVision.API.Models.Client.Entities;
 using SoundAndVision.API.Repositories.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SoundAndVision.API.Models.Entities.Forms;
-using System.Data.SqlClient;
-using SoundAndVision.API.Models.Mappers;
 using Microsoft.AspNetCore.Authorization;
 using SoundAndVision.API.Infrastructure.Interfaces;
+using SoundAndVision.API.Infrastructure;
 
 namespace SoundAndVision.API.Controllers
 {
@@ -38,6 +35,11 @@ namespace SoundAndVision.API.Controllers
 
             try
             {
+                HttpRequest request = HttpContext.Request;
+                IFormFile file = request.Form.Files[0];
+
+                userRegisterForm.Picture = ImageUpload.UploadImage(file, ImageUpload.ImageFolder.Avatars).Result;
+
                 CE.User user = new CE.User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
 
                 return Ok(_userAuthenticationRepositoryClient.Register(user));
