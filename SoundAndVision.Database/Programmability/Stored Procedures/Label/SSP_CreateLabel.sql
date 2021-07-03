@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[SSP_CreateLabel]
 	@Name NVARCHAR(100),
-	@Picture VARBINARY(MAX),
+	@Picture NVARCHAR(MAX),
 	@Location NVARCHAR(50),
 	@FoundationYear SMALLINT
 AS
 BEGIN
 	BEGIN TRY
 		INSERT INTO [dbo].[Label]([Name], [Picture], [Location], [FoundationYear])
-			VALUES (@Name, @Picture, @Location, @FoundationYear)
+			VALUES (@Name, ISNULL(@Picture, [dbo].[SSF_SetDefaultAvatar]()), @Location, @FoundationYear)
 
 		RETURN 0
 	END TRY

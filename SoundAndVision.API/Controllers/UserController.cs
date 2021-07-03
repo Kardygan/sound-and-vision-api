@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SoundAndVision.API.Infrastructure.Interfaces;
 using SoundAndVision.API.Repositories.Interfaces;
-using CE = SoundAndVision.API.Models.Client.Entities;
+using SoundAndVision.API.Models.Client.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 namespace SoundAndVision.API.Controllers
 {
     [Authorize]
-    [Route("api/user")]
+    [Route("users")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserRepository<CE.User> _userRepositoryClient;
+        private IUserRepository<User> _userRepositoryClient;
 
-        public UserController(IUserRepository<CE.User> userRepositoryClient)
+        public UserController(IUserRepository<User> userRepositoryClient)
         {
             _userRepositoryClient = userRepositoryClient;
         }

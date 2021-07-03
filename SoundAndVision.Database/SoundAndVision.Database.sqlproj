@@ -66,6 +66,10 @@
     <Folder Include="Programmability\Stored Procedures\User" />
     <Folder Include="Programmability\Stored Procedures\Label" />
     <Folder Include="Programmability\Stored Procedures\Genre" />
+    <Folder Include="Programmability\Stored Procedures\Album" />
+    <Folder Include="Programmability\Stored Procedures\AlbumGenre" />
+    <Folder Include="Programmability\Stored Procedures\AlbumArtist" />
+    <Folder Include="Programmability\Stored Procedures\Track" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Album.sql" />
@@ -102,8 +106,23 @@
     <Build Include="Programmability\Stored Procedures\User\SSP_SetContributorRole.sql" />
     <Build Include="Programmability\Stored Procedures\User\SSP_SetModeratorRole.sql" />
     <Build Include="Programmability\Stored Procedures\User\SSP_SetAdminRole.sql" />
+    <Build Include="Programmability\Stored Procedures\Album\SSP_CreateAlbum.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumArtist\SSP_CreateAlbumArtist.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumGenre\SSP_CreateAlbumGenre.sql" />
+    <Build Include="Programmability\Stored Procedures\Track\SSP_CreateTrack.sql" />
+    <Build Include="Programmability\Stored Procedures\Album\SSP_GetAlbumById.sql" />
+    <Build Include="Views\V_AlbumInfo.sql" />
+    <Build Include="Views\V_AlbumArtist.sql" />
+    <Build Include="Views\V_AlbumGenre.sql" />
+    <Build Include="Views\V_AlbumTrack.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumGenre\SSP_GetAlbumGenreById.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumArtist\SSP_GetAlbumArtistById.sql" />
+    <Build Include="Programmability\Stored Procedures\Track\SSP_GetAlbumTrackById.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SoundAndVision.Database.publish.xml" />
   </ItemGroup>
 </Project>

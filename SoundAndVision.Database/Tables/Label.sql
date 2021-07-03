@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL IDENTITY,
 	[Name] NVARCHAR(100) NOT NULL,
-	[Picture] NVARCHAR(MAX),
+	[Picture] NVARCHAR(MAX) NOT NULL,
 	[Location] NVARCHAR(50) NOT NULL,
 	[FoundationYear] SMALLINT NOT NULL,
 

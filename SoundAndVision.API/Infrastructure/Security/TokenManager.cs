@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using SoundAndVision.API.Infrastructure.Interfaces;
-using SoundAndVision.API.Models.Entities;
+using SoundAndVision.API.Models.Client.Entities;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SoundAndVision.API.Infrastructure
+namespace SoundAndVision.API.Infrastructure.Security
 {
     public class TokenManager : ITokenManager
     {
@@ -25,27 +25,14 @@ namespace SoundAndVision.API.Infrastructure
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha512);
 
+            string[] roles = { "Admin", "Moderator", "Contributor", "User" };
+
             Claim[] claims = new[]
             {
                 new Claim("UserId", user.Id.ToString()),
                 new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, roles[user.RoleId-1])
             };
-
-            switch (user.RoleId)
-            {
-                case 1:
-                    claims.Append(new Claim(ClaimTypes.Role, "Admin"));
-                    break;
-                case 2:
-                    claims.Append(new Claim(ClaimTypes.Role, "Moderator"));
-                    break;
-                case 3:
-                    claims.Append(new Claim(ClaimTypes.Role, "Contributor"));
-                    break;
-                case 4:
-                    claims.Append(new Claim(ClaimTypes.Role, "User"));
-                    break;
-            }
 
             JwtSecurityToken token = new JwtSecurityToken(
                 claims: claims,

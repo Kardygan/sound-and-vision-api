@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SoundAndVision.API.Models.Entities.Forms
+namespace SoundAndVision.API.Models.Forms
 {
     public class ArtistAddForm
     {

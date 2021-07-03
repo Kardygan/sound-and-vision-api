@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SoundAndVision.API.Models.Entities;
-using SoundAndVision.API.Models.Entities.Forms;
-using SoundAndVision.API.Models.Mappers;
-using CE = SoundAndVision.API.Models.Client.Entities;
+using SoundAndVision.API.Models.Forms;
+using SoundAndVision.API.Models.Client.Entities;
 using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using Microsoft.AspNetCore.Authorization;
@@ -13,17 +11,19 @@ using SoundAndVision.API.Infrastructure;
 namespace SoundAndVision.API.Controllers
 {
     [Authorize]
-    [Route("api/authentication")]
+    [Route("auth")]
     [ApiController]
     public class UserAuthenticationController : ControllerBase
     {
-        private IUserAuthenticationRepository<CE.User> _userAuthenticationRepositoryClient;
+        private IUserAuthenticationRepository<User> _userAuthenticationRepositoryClient;
         private ITokenManager _tokenManager;
+        private IImageUploader _imageUploader;
 
-        public UserAuthenticationController(IUserAuthenticationRepository<CE.User> userAuthenticationRepositoryClient, ITokenManager tokenManager)
+        public UserAuthenticationController(IUserAuthenticationRepository<User> userAuthenticationRepositoryClient, ITokenManager tokenManager, IImageUploader imageUploader)
         {
             _userAuthenticationRepositoryClient = userAuthenticationRepositoryClient;
             _tokenManager = tokenManager;
+            _imageUploader = imageUploader;
         }
 
         [AllowAnonymous]
@@ -36,11 +36,12 @@ namespace SoundAndVision.API.Controllers
             try
             {
                 HttpRequest request = HttpContext.Request;
-                IFormFile file = request.Form.Files[0];
+                //IFormFile file = request.Form.Files[0];
+                IFormFile file = null;
 
-                userRegisterForm.Picture = ImageUpload.UploadImage(file, ImageUpload.ImageFolder.Avatars).Result;
+                userRegisterForm.Picture = _imageUploader.UploadImage(file, ImageFolder.Avatars).Result;
 
-                CE.User user = new CE.User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
+                User user = new User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
 
                 return Ok(_userAuthenticationRepositoryClient.Register(user));
             }
@@ -63,7 +64,7 @@ namespace SoundAndVision.API.Controllers
 
             try
             {
-                User user = _userAuthenticationRepositoryClient.SignIn(userSignInForm.Email, userSignInForm.Password).ToUserAPI();
+                User user = _userAuthenticationRepositoryClient.SignIn(userSignInForm.Email, userSignInForm.Password);
 
                 return Ok(_tokenManager.Authenticate(user));
             }

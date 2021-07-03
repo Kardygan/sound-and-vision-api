@@ -10,7 +10,13 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
--- Add main roles.
+-- ***********************************************************************************
+--
+-- Insert important data during database publication process.
+--
+-- ***********************************************************************************
+
+-- Add roles.
 SET IDENTITY_INSERT [dbo].[UserRole] ON;
 INSERT INTO [dbo].[UserRole]([Id], [Name]) VALUES
     (1, 'Admin'),
@@ -154,6 +160,7 @@ INSERT INTO [dbo].[Genre]([Name]) VALUES
     ('Rock'),
     ('Acoustic Rock'),
     ('Alternative Rock'),
+    ('Alternative'),
     ('Art Rock'),
     ('Blues Rock'),
     ('Comedy Rock'),
@@ -184,35 +191,68 @@ INSERT INTO [dbo].[Genre]([Name]) VALUES
 GO
 
 -- Add main labels.
-INSERT INTO [dbo].[Label]([Name], [Location], [FoundationYear]) VALUES
-    ('RCA Victor', 'États-Unis', 1929),
-    ('RCA Records', 'États-Unis', 1945),
-    ('EMI Records', 'Royaume-Uni', 1931),
-    ('Virgin Records', 'Royaume-Uni', 1973),
-    ('Parlophone', 'Allemagne', 1896),
-    ('Columbia Records', 'États-Unis', 1888);
+EXEC [dbo].[SSP_CreateLabel] 'RCA Victor', NULL, 'États-Unis', 1929;
+EXEC [dbo].[SSP_CreateLabel] 'RCA Records', NULL, 'États-Unis', 1945;
+EXEC [dbo].[SSP_CreateLabel] 'EMI Records', NULL, 'Royaume-Uni', 1931;
+EXEC [dbo].[SSP_CreateLabel] 'Virgin Records', NULL, 'Royaume-Uni', 1973;
+EXEC [dbo].[SSP_CreateLabel] 'Parlophone', NULL, 'Allemagne', 1896;
+EXEC [dbo].[SSP_CreateLabel] 'Columbia Records', NULL, 'États-Unis', 1888;
 GO
+
+-- ***********************************************************************************
+--
+-- Test section.
+--
+-- ***********************************************************************************
 
 -- Test albums.
-EXEC [dbo].[SSP_CreateArtist] 'David Bowie', NULL, 'David Robert Jones', '1947-01-08', '2016-01-10', 'He was a space invader.';
-EXEC [dbo].[SSP_CreateArtist] 'Nirvana', NULL, NULL, '1987', NULL, NULL;
-
-INSERT INTO [dbo].[Album]([Name], [LabelId], [AlbumTypeId]) VALUES
-    ('Ziggy Stardust', 1, 1),
-    ('Aladdin Sane', 1, 1);
+EXEC [dbo].[SSP_CreateArtist] 'David Bowie', 'Uploads/Artists/davidbowie.jpg', 'David Robert Jones', '1947-01-08', '2016-01-10', 'He was a space invader.';
+EXEC [dbo].[SSP_CreateArtist] 'Nirvana', 'Uploads/Artists/nirvana.jpg', NULL, '1987', '1994-04-08', 'Un groupe inconnu des années 90.';
 GO
 
-INSERT INTO [dbo].[AlbumArtist]([AlbumId], [ArtistId]) VALUES
-    (1, 1),
-    (1, 2),
-    (2, 1);
+EXEC [dbo].[SSP_CreateAlbum] 'The Rise and Fall of Ziggy Stardust and the Spiders From Mars', 'Uploads/Albums/ziggy.jpg', '1972-06-12', NULL, 1, 1;
+EXEC [dbo].[SSP_CreateAlbum] 'Low', 'Uploads/Albums/low.jpg', '1977-01-14', NULL, 1, 1;
+EXEC [dbo].[SSP_CreateAlbum] 'Nevermind', 'Uploads/Albums/nevermind.jpg', '1991-09-24', NULL, 6, 1;
+EXEC [dbo].[SSP_CreateAlbum] 'MTV Unplugged in New York', 'Uploads/Albums/mtv.jpg', '1994-11-01', 'Album vraiment pourri.', 6, 2;
+EXEC [dbo].[SSP_CreateAlbum] 'La collaboration de la mort', NULL, '1993', NULL, 3, 4;
 GO
 
-INSERT INTO [dbo].[AlbumGenre]([AlbumId], [GenreId]) VALUES
-    (1, 18),
-    (1, 9),
-    (2, 18),
-    (2, 12);
+EXEC [dbo].[SSP_CreateAlbumArtist] 1, 1; -- Ziggy Stardust              - David Bowie
+EXEC [dbo].[SSP_CreateAlbumArtist] 2, 1; -- Low                         - David Bowie
+EXEC [dbo].[SSP_CreateAlbumArtist] 3, 2; -- Nevermind                   - Nirvana
+EXEC [dbo].[SSP_CreateAlbumArtist] 4, 2; -- MTV Unplugged in New York   - Nirvana
+EXEC [dbo].[SSP_CreateAlbumArtist] 5, 1; -- La collaboration de la mort - David Bowie
+EXEC [dbo].[SSP_CreateAlbumArtist] 5, 2; -- La collaboration de la mort - Nirvana
+GO
+
+EXEC [dbo].[SSP_CreateAlbumGenre] 1, 131; -- Ziggy Stardust             - Glam Rock
+EXEC [dbo].[SSP_CreateAlbumGenre] 1, 123; -- Ziggy Stardust             - Art Rock
+EXEC [dbo].[SSP_CreateAlbumGenre] 2, 123; -- Low                        - Art Rock
+EXEC [dbo].[SSP_CreateAlbumGenre] 2, 31; -- Low                         - Experimental
+EXEC [dbo].[SSP_CreateAlbumGenre] 3, 122; -- Nevermind                  - Alternative
+EXEC [dbo].[SSP_CreateAlbumGenre] 4, 122; -- MTV Unplugged in New York  - Alternative
+EXEC [dbo].[SSP_CreateAlbumGenre] 5, 119; -- La collaboration de la mort - Rock
+GO
+
+EXEC [dbo].[SSP_CreateTrack] 1, 'Five Years', 282, 1;
+EXEC [dbo].[SSP_CreateTrack] 2, 'Soul Love', 213, 1;
+EXEC [dbo].[SSP_CreateTrack] 3, 'Moonage Daydream', 277, 1;
+EXEC [dbo].[SSP_CreateTrack] 4, 'Starman', 256, 1;
+
+EXEC [dbo].[SSP_CreateTrack] 1, 'Speed of Life', 167, 2;
+EXEC [dbo].[SSP_CreateTrack] 2, 'Breaking Glass', 112, 2;
+EXEC [dbo].[SSP_CreateTrack] 3, 'What in the World', 143, 2;
+EXEC [dbo].[SSP_CreateTrack] 4, 'Sound and Vision', 183, 2;
+
+EXEC [dbo].[SSP_CreateTrack] 1, 'Smells Like Teen Spirit', 301, 3;
+EXEC [dbo].[SSP_CreateTrack] 2, 'In Bloom', 254, 3;
+EXEC [dbo].[SSP_CreateTrack] 3, 'Come as You Are', 218, 3;
+
+EXEC [dbo].[SSP_CreateTrack] 1, 'About a Girl', 217, 4;
+EXEC [dbo].[SSP_CreateTrack] 2, 'Come as You Are', 253, 4;
+EXEC [dbo].[SSP_CreateTrack] 3, 'Jesus Doesn''t Want Me for a Sunbeam', 277, 4;
+
+EXEC [dbo].[SSP_CreateTrack] 1, 'The Man Who Sold the World', 260, 5;
 GO
 
 -- Test users.
@@ -220,12 +260,11 @@ EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com',
 EXEC [dbo].[SSP_CreateUser] 'DoomSlayer', NULL, NULL, 'doom@gmail.com', '@test1234!', NULL, 'Enfer', NULL;
 EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'max.max@gmail.com', '@test1234!', NULL, 'Australie', NULL;
 EXEC [dbo].[SSP_CreateUser] 'Snake', 'S.D', 'Plissken', 's.plissken@gmail.com', '@test1234!', NULL, 'États-Unis', NULL;
-
 GO
 
 -- Test set roles.
-EXEC [dbo].[SSP_SetAdminRole] 1; -- Kardygan
-EXEC [dbo].[SSP_SetModeratorRole] 2; -- DoomSlayer
-EXEC [dbo].[SSP_SetContributorRole] 3; -- MadMax
-EXEC [dbo].[SSP_SetUserRole] 4; -- Snake
+EXEC [dbo].[SSP_SetAdminRole] 1; -- Kardygan        - Admin
+EXEC [dbo].[SSP_SetModeratorRole] 2; -- DoomSlayer  - Moderator
+EXEC [dbo].[SSP_SetContributorRole] 3; -- MadMax    - Contributor
+EXEC [dbo].[SSP_SetUserRole] 4; -- Snake            - User
 GO

@@ -9,8 +9,7 @@ BEGIN
 
 			DELETE FROM [dbo].[Genre]
 			WHERE [Id] = @Id;
-			
-			RETURN 0
+
 			COMMIT;	
 		END TRY
 		BEGIN CATCH

@@ -21,10 +21,11 @@ using Tools.Connection.Database;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using SoundAndVision.API.Infrastructure;
 using SoundAndVision.API.Infrastructure.Interfaces;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using SoundAndVision.API.Infrastructure.Security;
+using SoundAndVision.API.Infrastructure.Tools;
 
 namespace SoundAndVision.API
 {
@@ -50,6 +51,8 @@ namespace SoundAndVision.API
             // Personal services.
             services.AddSingleton(sp => new Connection(SqlClientFactory.Instance, @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SoundAndVisionDB;Integrated Security=True;"));
             services.AddSingleton<ITokenManager, TokenManager>();
+
+            services.AddSingleton<IImageUploader, ImageUploader>();
 
             services.AddSingleton<IUserAuthenticationRepository<GE.User>, GR.UserAuthenticationRepository>();
             services.AddSingleton<IUserAuthenticationRepository<CE.User>, CR.UserAuthenticationRepository>();

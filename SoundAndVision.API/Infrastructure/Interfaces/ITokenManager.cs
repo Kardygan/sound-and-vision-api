@@ -1,4 +1,4 @@
-﻿using SoundAndVision.API.Models.Entities;
+﻿using SoundAndVision.API.Models.Client.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

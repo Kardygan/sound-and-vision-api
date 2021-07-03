@@ -27,6 +27,12 @@ namespace SoundAndVision.API.Models.Client.Entities
             RoleId = roleId;
         }
 
+        internal User(int id, string username, string firstName, string lastName, string email, string picture, string location, string bio, DateTime registrationDate, bool isActive, int roleId, string token)
+            : this(id, username, firstName, lastName, email, picture, location, bio, registrationDate, isActive, roleId)
+        {
+            Token = token;
+        }
+
         public int Id { get; private set; }
         public string Username { get; set; }
         public string FirstName { get; set; }
@@ -39,5 +45,6 @@ namespace SoundAndVision.API.Models.Client.Entities
         public DateTime RegistrationDate { get; private set; }
         public bool IsActive { get; private set; }
         public int RoleId { get; private set; }
+        public string Token { get; set; }
     }
 }

@@ -1,6 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[SSP_CreateAlbum]
-	@param1 int = 0,
-	@param2 int
+	@Name NVARCHAR(250),
+	@Cover NVARCHAR(MAX),
+	@ReleaseDate DATE,
+	@Description NVARCHAR(4000),
+	@LabelId INT,
+	@AlbumTypeId INT
 AS
-	SELECT @param1, @param2
-RETURN 0
+BEGIN
+	INSERT INTO [dbo].[Album]([Name], [Cover], [ReleaseDate], [Description], [LabelId], [AlbumTypeId])
+	OUTPUT [inserted].[Id]
+		VALUES (@Name, ISNULL(@Cover, [dbo].[SSF_SetDefaultAvatar]()), @ReleaseDate, @Description, @LabelId, @AlbumTypeId);
+END;

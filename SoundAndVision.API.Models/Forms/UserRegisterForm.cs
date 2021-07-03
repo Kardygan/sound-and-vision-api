@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace SoundAndVision.API.Models.Entities.Forms
+namespace SoundAndVision.API.Models.Forms
 {
     public class UserRegisterForm
     {
@@ -20,7 +20,7 @@ namespace SoundAndVision.API.Models.Entities.Forms
         public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(30, MinimumLength = 8)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$", ErrorMessage = "The password must be between 8 and 30 characters and have at least one uppercase letter, one lowercase letter, one number and one special character.")]
         public string Password { get; set; }
         [Required]
         [DataType(DataType.Password)]
