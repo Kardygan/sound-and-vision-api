@@ -27,14 +27,7 @@ namespace SoundAndVision.API.Models.Client.Mappers
 
         internal static User ToUserClient(this GE.User user)
         {
-            try
-            {
-                return new User(user.Id, user.Username, user.FirstName, user.LastName, user.Email, user.Picture, user.Location, user.Bio, user.RegistrationDate, user.IsActive, user.RoleId);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
+            return new User(user.Id, user.Username, user.FirstName, user.LastName, user.Email, user.Picture, user.Location, user.Bio, user.RegistrationDate, user.IsActive, user.RoleId);
         }
 
         // Artist.
@@ -75,7 +68,7 @@ namespace SoundAndVision.API.Models.Client.Mappers
 
         internal static AlbumFull ToAlbumFullClient(this GE.AlbumFull album)
         {
-            return new AlbumFull(album.Id, album.Name, album.Cover, album.ReleaseDate, album.Description, album.Label.ToLabelClient(), album.AlbumType.ToAlbumTypeClient(), album.Artists.Select(artist => artist.ToArtistClient()), album.Genres.Select(genre => genre.ToGenreClient()), album.Tracks.Select(track => track.ToTrackClient()));
+            return new AlbumFull(album.Id, album.Name, album.Cover, album.ReleaseDate, album.Description, album.Label.ToLabelClient(), album.AlbumType.ToAlbumTypeClient(), album.Artists.Select(artist => artist.ToArtistClient()), album.Genres.Select(genre => genre.ToGenreClient()), album.Tracks.Select(track => track.ToTrackFullClient()));
         }
 
         // Label.
@@ -130,16 +123,13 @@ namespace SoundAndVision.API.Models.Client.Mappers
             {
                 Num = track.Num,
                 Name = track.Name,
-                Duration = track.Duration//,
-                //AlbumId = track.AlbumId
+                Duration = track.Duration//AlbumId = track.AlbumId
             };
         }
 
-        internal static Track ToTrackClient(this GE.Track track)
+        internal static TrackFull ToTrackFullClient(this GE.TrackFull track)
         {
-            return new Track(track.Id, track.Num, track.Name, track.Duration
-                //, track.AlbumId
-                );
+            return new TrackFull(track.Id, track.Num, track.Name, track.Duration);
         }
     }
 }

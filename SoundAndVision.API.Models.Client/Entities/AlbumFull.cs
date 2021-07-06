@@ -6,7 +6,7 @@ namespace SoundAndVision.API.Models.Client.Entities
 {
     public class AlbumFull
     {
-        public AlbumFull(int id, string name, string cover, DateTime? releaseDate, string description, Label label, AlbumType albumType, IEnumerable<Artist> artists, IEnumerable<Genre> genres, IEnumerable<Track> tracks)
+        public AlbumFull(int id, string name, string cover, DateTime? releaseDate, string description, Label label, AlbumType albumType, IEnumerable<Artist> artists, IEnumerable<Genre> genres, IEnumerable<TrackFull> tracks)
         {
             Id = id;
             Name = name;
@@ -29,6 +29,6 @@ namespace SoundAndVision.API.Models.Client.Entities
         public AlbumType AlbumType { get; private set; }
         public IEnumerable<Artist> Artists { get; private set; }
         public IEnumerable<Genre> Genres { get; private set; }
-        public IEnumerable<Track> Tracks { get; set; }
+        public IEnumerable<TrackFull> Tracks { get; set; }
     }
 }

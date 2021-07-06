@@ -57,21 +57,6 @@ namespace SoundAndVision.API.Models.Global.Mappers
             };
         }
 
-        internal static ArtistFull ToAlbumArtistFullGlobal(this IDataRecord dataRecord)
-        {
-            return new ArtistFull()
-            {
-                Id = (int)dataRecord["ArtistId"],
-                Name = (string)dataRecord["ArtistName"],
-                Picture = (string)dataRecord["ArtistPicture"],
-                Alias = (dataRecord["ArtistAlias"] is DBNull) ? null : (string)dataRecord["ArtistAlias"],
-                StartDate = (DateTime)dataRecord["ArtistStartDate"],
-                EndDate = (dataRecord["ArtistEndDate"] is DBNull) ? (DateTime?)null : (DateTime)dataRecord["ArtistEndDate"],
-                Description = (dataRecord["ArtistDescription"] is DBNull) ? null : (string)dataRecord["ArtistDescription"],
-                AlbumId = (int)dataRecord["Id"]
-            };
-        }
-
         // Album.
         internal static AlbumFull ToAlbumFullGlobal(this IDataRecord dataRecord)
         {
@@ -140,28 +125,7 @@ namespace SoundAndVision.API.Models.Global.Mappers
             };
         }
 
-        internal static GenreFull ToAlbumGenreFullGlobal(this IDataRecord dataRecord)
-        {
-            return new GenreFull()
-            {
-                Id = (int)dataRecord["GenreId"],
-                Name = (string)dataRecord["GenreName"],
-                AlbumId = (int)dataRecord["Id"],
-            };
-        }
-
         // Track.
-        internal static Track ToAlbumTrackGlobal(this IDataRecord dataRecord)
-        {
-            return new Track()
-            {
-                Id = (int)dataRecord["TrackId"],
-                Num = (string)dataRecord["TrackNum"],
-                Name = (string)dataRecord["TrackName"],
-                Duration = (dataRecord["TrackDuration"] is DBNull) ? (short?)null : (short)dataRecord["TrackDuration"]
-            };
-        }
-
         internal static TrackFull ToAlbumTrackFullGlobal(this IDataRecord dataRecord)
         {
             return new TrackFull()
@@ -169,8 +133,7 @@ namespace SoundAndVision.API.Models.Global.Mappers
                 Id = (int)dataRecord["TrackId"],
                 Num = (string)dataRecord["TrackNum"],
                 Name = (string)dataRecord["TrackName"],
-                Duration = (dataRecord["TrackDuration"] is DBNull) ? (short?)null : (short)dataRecord["TrackDuration"],
-                AlbumId = (int)dataRecord["Id"]
+                Duration = (dataRecord["TrackDuration"] is DBNull) ? (short?)null : (short)dataRecord["TrackDuration"]
             };
         }
     }

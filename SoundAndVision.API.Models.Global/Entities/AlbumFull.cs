@@ -15,6 +15,6 @@ namespace SoundAndVision.API.Models.Global.Entities
         public AlbumType AlbumType { get; set; }
         public IEnumerable<Artist> Artists { get; set; }
         public IEnumerable<Genre> Genres { get; set; }
-        public IEnumerable<Track> Tracks { get; set; }
+        public IEnumerable<TrackFull> Tracks { get; set; }
     }
 }

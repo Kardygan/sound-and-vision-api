@@ -68,7 +68,7 @@ namespace SoundAndVision.API.Models.Global.Repositories
                 AlbumFull album = _connection.ExecuteReader(commandAlbum, albumData => albumData.ToAlbumFullGlobal()).SingleOrDefault();
                 album.Artists = _connection.ExecuteReader(commandAlbumArtists, albumArtistsData => albumArtistsData.ToAlbumArtistGlobal());
                 album.Genres = _connection.ExecuteReader(commandAlbumGenres, albumGenresData => albumGenresData.ToAlbumGenreGlobal());
-                album.Tracks = _connection.ExecuteReader(commandAlbumTracks, albumTracksData => albumTracksData.ToAlbumTrackGlobal());
+                album.Tracks = _connection.ExecuteReader(commandAlbumTracks, albumTracksData => albumTracksData.ToAlbumTrackFullGlobal());
 
                 return album;
             }

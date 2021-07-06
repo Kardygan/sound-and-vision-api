@@ -4,19 +4,19 @@ using System.Text;
 
 namespace SoundAndVision.API.Models.Client.Entities
 {
-    public class Track
+    public class TrackFull
     {
-        public Track(string num, string name, short? duration, int albumId)
+        public TrackFull(int id, string num, string name, short? duration)
         {
+            Id = id;
             Num = num;
             Name = name;
             Duration = duration;
-            AlbumId = albumId;
         }
 
+        public int Id { get; private set; }
         public string Num { get; set; }
         public string Name { get; set; }
         public short? Duration { get; set; }
-        public int AlbumId { get; set; }
     }
 }

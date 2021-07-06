@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using SoundAndVision.API.Models.Client.Mappers;
+using System.Linq;
 
 namespace SoundAndVision.API.Models.Client.Services
 {
@@ -36,12 +37,26 @@ namespace SoundAndVision.API.Models.Client.Services
 
         public Artist Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _artistRepository.Get(id).ToArtistClient();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IEnumerable<Artist> Get()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _artistRepository.Get().Select(artistData => artistData.ToArtistClient());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public bool Remove(int id)

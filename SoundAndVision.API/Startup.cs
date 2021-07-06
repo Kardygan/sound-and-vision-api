@@ -66,6 +66,10 @@ namespace SoundAndVision.API
             services.AddSingleton<IAlbumRepository<GE.Album, GE.AlbumFull>, AlbumRepository>();
             services.AddSingleton<IAlbumRepository<CE.Album, CE.AlbumFull>, AlbumService>();
 
+            // Artist.
+            services.AddSingleton<IArtistRepository<GE.Artist>, ArtistRepository>();
+            services.AddSingleton<IArtistRepository<CE.Artist>, ArtistService>();
+
             // Roles.
             services.AddAuthorization(options =>
             {
