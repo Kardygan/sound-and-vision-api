@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SoundAndVision.API.Infrastructure.Interfaces;
-using SoundAndVision.API.Repositories.Interfaces;
 using SoundAndVision.API.Models.Client.Entities;
+using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +11,29 @@ using System.Threading.Tasks;
 namespace SoundAndVision.API.Controllers
 {
     [Authorize]
-    [Route("users")]
+    [Route("albums")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AlbumController : ControllerBase
     {
-        private IUserRepository<User> _userService;
+        private IAlbumRepository<Album, AlbumFull> _albumService;
 
-        public UserController(IUserRepository<User> userService)
+        public AlbumController(IAlbumRepository<Album, AlbumFull> albumService)
         {
-            _userService = userService;
+            _albumService = albumService;
+        }
+
+        [AllowAnonymous]
+        [HttpGet()]
+        public IActionResult Get()
+        {
+            try
+            {
+                return Ok(_albumService.Get());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [AllowAnonymous]
@@ -29,21 +42,7 @@ namespace SoundAndVision.API.Controllers
         {
             try
             {
-                return Ok(_userService.Get(id));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [Authorize("Moderator")]
-        [HttpGet()]
-        public IActionResult Get()
-        {
-            try
-            {
-                return Ok(_userService.Get());
+                return Ok(_albumService.Get(id));
             }
             catch (Exception ex)
             {

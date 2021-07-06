@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using System.Text;
 using SoundAndVision.API.Models.Client.Mappers;
 
-namespace SoundAndVision.API.Models.Client.Repositories
+namespace SoundAndVision.API.Models.Client.Services
 {
-    public class UserAuthenticationRepository : IUserAuthenticationRepository<User>
+    public class UserAuthenticationService : IUserAuthenticationRepository<User>
     {
-        private IUserAuthenticationRepository<GE.User> _userAuthenticationRepositoryGlobal;
+        private IUserAuthenticationRepository<GE.User> _userAuthenticationRepository;
 
-        public UserAuthenticationRepository(IUserAuthenticationRepository<GE.User> userAuthenticationRepositoryGlobal)
+        public UserAuthenticationService(IUserAuthenticationRepository<GE.User> userAuthenticationRepository)
         {
-            _userAuthenticationRepositoryGlobal = userAuthenticationRepositoryGlobal;
+            _userAuthenticationRepository = userAuthenticationRepository;
         }
 
         public int Register(User user)
         {
             try
             {
-                int id = _userAuthenticationRepositoryGlobal.Register(user.ToUserGlobal());
+                int id = _userAuthenticationRepository.Register(user.ToUserGlobal());
                 user.Password = null;
 
                 return id;
@@ -36,7 +36,7 @@ namespace SoundAndVision.API.Models.Client.Repositories
         {
             try
             {
-                return _userAuthenticationRepositoryGlobal.SignIn(email, password).ToUserClient();
+                return _userAuthenticationRepository.SignIn(email, password).ToUserClient();
             }
             catch (Exception ex)
             {

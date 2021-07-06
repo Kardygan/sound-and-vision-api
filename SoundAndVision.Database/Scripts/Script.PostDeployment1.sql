@@ -213,8 +213,8 @@ GO
 EXEC [dbo].[SSP_CreateAlbum] 'The Rise and Fall of Ziggy Stardust and the Spiders From Mars', 'Uploads/Albums/ziggy.jpg', '1972-06-12', NULL, 1, 1;
 EXEC [dbo].[SSP_CreateAlbum] 'Low', 'Uploads/Albums/low.jpg', '1977-01-14', NULL, 1, 1;
 EXEC [dbo].[SSP_CreateAlbum] 'Nevermind', 'Uploads/Albums/nevermind.jpg', '1991-09-24', NULL, 6, 1;
-EXEC [dbo].[SSP_CreateAlbum] 'MTV Unplugged in New York', 'Uploads/Albums/mtv.jpg', '1994-11-01', 'Album vraiment pourri.', 6, 2;
-EXEC [dbo].[SSP_CreateAlbum] 'La collaboration de la mort', NULL, '1993', NULL, 3, 4;
+EXEC [dbo].[SSP_CreateAlbum] 'MTV Unplugged in New York', 'Uploads/Albums/mtv.jpg', '1994-11-01', 'MTV Unplugged in New York est un album live du groupe américain de grunge Nirvana, publié le 1er novembre 1994 en CD par DGC Records, puis le 20 novembre 2007 en DVD. Alors en tournée pour promouvoir In Utero, mais dont les ventes sont plus faibles que celles espérées, le groupe accepte de participer à l''émission MTV Unplugged. Dans une ambiance tendue entre Kurt Cobain et les représentants de la chaîne, ils répètent deux jours avant d''enregistrer en une seule prise l''intégralité du concert le 18 novembre 1993 dans les studios Sony Music de New York. Diffusée le 12 décembre, leur prestation permet à leur album studio de franchir la barre du million de copies vendues, mais également de donner un nouveau souffle au programme télévisuel.', 6, 2;
+EXEC [dbo].[SSP_CreateAlbum] 'La collaboration qui n''est jamais arrivée', NULL, '1993', NULL, 3, 4;
 GO
 
 EXEC [dbo].[SSP_CreateAlbumArtist] 1, 1; -- Ziggy Stardust              - David Bowie
@@ -238,28 +238,62 @@ EXEC [dbo].[SSP_CreateTrack] 1, 'Five Years', 282, 1;
 EXEC [dbo].[SSP_CreateTrack] 2, 'Soul Love', 213, 1;
 EXEC [dbo].[SSP_CreateTrack] 3, 'Moonage Daydream', 277, 1;
 EXEC [dbo].[SSP_CreateTrack] 4, 'Starman', 256, 1;
+EXEC [dbo].[SSP_CreateTrack] 5, 'It Ain''t Easy', 179, 1;
+EXEC [dbo].[SSP_CreateTrack] 6, 'Lady Stardust', 201, 1;
+EXEC [dbo].[SSP_CreateTrack] 7, 'Star', 166, 1;
+EXEC [dbo].[SSP_CreateTrack] 8, 'Hang On to Yourself', 158, 1;
+EXEC [dbo].[SSP_CreateTrack] 9, 'Ziggy Stardust', 193, 1;
+EXEC [dbo].[SSP_CreateTrack] 10, 'Suffragette City', 205, 1;
+EXEC [dbo].[SSP_CreateTrack] 11, 'Rock ''n'' Roll Suicide', 181, 1;
 
 EXEC [dbo].[SSP_CreateTrack] 1, 'Speed of Life', 167, 2;
 EXEC [dbo].[SSP_CreateTrack] 2, 'Breaking Glass', 112, 2;
 EXEC [dbo].[SSP_CreateTrack] 3, 'What in the World', 143, 2;
 EXEC [dbo].[SSP_CreateTrack] 4, 'Sound and Vision', 183, 2;
+EXEC [dbo].[SSP_CreateTrack] 5, 'Always Crashing in the Same Car', 213, 2;
+EXEC [dbo].[SSP_CreateTrack] 6, 'Be My Wife', 176, 2;
+EXEC [dbo].[SSP_CreateTrack] 7, 'A New Career in a New Town', 175, 2;
+EXEC [dbo].[SSP_CreateTrack] 8, 'Warszawa', 383, 2;
+EXEC [dbo].[SSP_CreateTrack] 9, 'Art Decade', 227, 2;
+EXEC [dbo].[SSP_CreateTrack] 10, 'Weeping Wall', 208, 2;
+EXEC [dbo].[SSP_CreateTrack] 11, 'Subterraneans', 341, 2;
 
 EXEC [dbo].[SSP_CreateTrack] 1, 'Smells Like Teen Spirit', 301, 3;
 EXEC [dbo].[SSP_CreateTrack] 2, 'In Bloom', 254, 3;
 EXEC [dbo].[SSP_CreateTrack] 3, 'Come as You Are', 218, 3;
+EXEC [dbo].[SSP_CreateTrack] 4, 'Breed', 183, 3;
+EXEC [dbo].[SSP_CreateTrack] 5, 'Lithium', 256, 3;
+EXEC [dbo].[SSP_CreateTrack] 6, 'Polly', 176, 3;
+EXEC [dbo].[SSP_CreateTrack] 7, 'Territorial Pissings', 142, 3;
+EXEC [dbo].[SSP_CreateTrack] 8, 'Drain You', 223, 3;
+EXEC [dbo].[SSP_CreateTrack] 9, 'Lounge Act', 156, 3;
+EXEC [dbo].[SSP_CreateTrack] 10, 'Stay Away', 212, 3;
+EXEC [dbo].[SSP_CreateTrack] 11, 'On a Plain', 196, 3;
+EXEC [dbo].[SSP_CreateTrack] 12, 'Something in the Way', 231, 3;
 
 EXEC [dbo].[SSP_CreateTrack] 1, 'About a Girl', 217, 4;
 EXEC [dbo].[SSP_CreateTrack] 2, 'Come as You Are', 253, 4;
 EXEC [dbo].[SSP_CreateTrack] 3, 'Jesus Doesn''t Want Me for a Sunbeam', 277, 4;
+EXEC [dbo].[SSP_CreateTrack] 4, 'The Man Who Sold the World', 260, 4;
+EXEC [dbo].[SSP_CreateTrack] 5, 'Pennyroyal Tea', 220, 4;
+EXEC [dbo].[SSP_CreateTrack] 6, 'Dumb', 172, 4;
+EXEC [dbo].[SSP_CreateTrack] 7, 'Polly', 196, 4;
+EXEC [dbo].[SSP_CreateTrack] 8, 'On a Plain', 224, 4;
+EXEC [dbo].[SSP_CreateTrack] 9, 'Something in the Way', 241, 4;
+EXEC [dbo].[SSP_CreateTrack] 10, 'Plateau', 217, 4;
+EXEC [dbo].[SSP_CreateTrack] 11, 'Oh Me', 205, 4;
+EXEC [dbo].[SSP_CreateTrack] 12, 'Lake of Fire', 175, 4;
+EXEC [dbo].[SSP_CreateTrack] 13, 'All Apologies', 262, 4;
+EXEC [dbo].[SSP_CreateTrack] 14, 'Where Did You Sleep Last Night', 305, 4;
 
 EXEC [dbo].[SSP_CreateTrack] 1, 'The Man Who Sold the World', 260, 5;
 GO
 
 -- Test users.
-EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', 'Uploads/Avatar/ohlongjohnson.png', 'Belgique', 'I''m the boss here!';
-EXEC [dbo].[SSP_CreateUser] 'DoomSlayer', NULL, NULL, 'doom@gmail.com', '@test1234!', NULL, 'Enfer', NULL;
-EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'max.max@gmail.com', '@test1234!', NULL, 'Australie', NULL;
-EXEC [dbo].[SSP_CreateUser] 'Snake', 'S.D', 'Plissken', 's.plissken@gmail.com', '@test1234!', NULL, 'États-Unis', NULL;
+EXEC [dbo].[SSP_CreateUser] 'Kardygan', 'Tommy', 'Laczny', 'k.sn4ily@gmail.com', '@test1234!', 'Uploads/Avatars/ohlongjohnson.png', 'Belgique', 'I''m the boss here!';
+EXEC [dbo].[SSP_CreateUser] 'DoomSlayer', 'Inconnu', 'Inconnu', 'doom@gmail.com', '@test1234!', 'Uploads/Avatars/doomguy.jpg', 'Enfer', NULL;
+EXEC [dbo].[SSP_CreateUser] 'MadMax', NULL, NULL, 'max.max@gmail.com', '@test1234!', 'Uploads/Avatars/madmax.jpg', 'Australie', NULL;
+EXEC [dbo].[SSP_CreateUser] 'Snake', 'S.D', 'Plissken', 's.plissken@gmail.com', '@test1234!', 'Uploads/Avatars/snake.jpg', 'États-Unis', NULL;
 GO
 
 -- Test set roles.

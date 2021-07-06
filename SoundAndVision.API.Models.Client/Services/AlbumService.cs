@@ -7,27 +7,31 @@ using System.Text;
 using SoundAndVision.API.Models.Client.Mappers;
 using System.Linq;
 
-namespace SoundAndVision.API.Models.Client.Repositories
+namespace SoundAndVision.API.Models.Client.Services
 {
-    public class UserRepository : IUserRepository<User>
+    public class AlbumService : IAlbumRepository<Album, AlbumFull>
     {
-        private IUserRepository<GE.User> _userRepositoryGlobal;
-
-        public UserRepository(IUserRepository<GE.User> userRepositoryGlobal)
+        private IAlbumRepository<GE.Album, GE.AlbumFull> _albumRepository;
+        public AlbumService(IAlbumRepository<GE.Album, GE.AlbumFull> albumRepository)
         {
-            _userRepositoryGlobal = userRepositoryGlobal;
+            _albumRepository = albumRepository;
         }
 
-        public bool Edit(int id, User user)
+        public bool Add(Album album)
         {
             throw new NotImplementedException();
         }
 
-        public User Get(int id)
+        public bool Edit(int id, Album album)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<AlbumFull> Get()
         {
             try
             {
-                return _userRepositoryGlobal.Get(id).ToUserClient();
+                return _albumRepository.Get().Select(albumData => albumData.ToAlbumFullClient());
             }
             catch (Exception ex)
             {
@@ -35,11 +39,11 @@ namespace SoundAndVision.API.Models.Client.Repositories
             }
         }
 
-        public IEnumerable<User> Get()
+        public AlbumFull Get(int id)
         {
             try
             {
-                return _userRepositoryGlobal.Get().Select(user => user.ToUserClient());
+                return _albumRepository.Get(id).ToAlbumFullClient();
             }
             catch (Exception ex)
             {

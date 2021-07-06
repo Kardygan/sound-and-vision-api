@@ -6,7 +6,6 @@ using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using Microsoft.AspNetCore.Authorization;
 using SoundAndVision.API.Infrastructure.Interfaces;
-using SoundAndVision.API.Infrastructure;
 
 namespace SoundAndVision.API.Controllers
 {
@@ -15,13 +14,13 @@ namespace SoundAndVision.API.Controllers
     [ApiController]
     public class UserAuthenticationController : ControllerBase
     {
-        private IUserAuthenticationRepository<User> _userAuthenticationRepositoryClient;
+        private IUserAuthenticationRepository<User> _userAuthenticationService;
         private ITokenManager _tokenManager;
         private IImageUploader _imageUploader;
 
-        public UserAuthenticationController(IUserAuthenticationRepository<User> userAuthenticationRepositoryClient, ITokenManager tokenManager, IImageUploader imageUploader)
+        public UserAuthenticationController(IUserAuthenticationRepository<User> userAuthenticationService, ITokenManager tokenManager, IImageUploader imageUploader)
         {
-            _userAuthenticationRepositoryClient = userAuthenticationRepositoryClient;
+            _userAuthenticationService = userAuthenticationService;
             _tokenManager = tokenManager;
             _imageUploader = imageUploader;
         }
@@ -43,7 +42,7 @@ namespace SoundAndVision.API.Controllers
 
                 User user = new User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
 
-                return Ok(_userAuthenticationRepositoryClient.Register(user));
+                return Ok(_userAuthenticationService.Register(user));
             }
             catch (ArgumentException aex)
             {
@@ -64,7 +63,7 @@ namespace SoundAndVision.API.Controllers
 
             try
             {
-                User user = _userAuthenticationRepositoryClient.SignIn(userSignInForm.Email, userSignInForm.Password);
+                User user = _userAuthenticationService.SignIn(userSignInForm.Email, userSignInForm.Password);
 
                 return Ok(_tokenManager.Authenticate(user));
             }

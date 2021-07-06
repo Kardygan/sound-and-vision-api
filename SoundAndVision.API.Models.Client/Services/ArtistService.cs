@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using System.Text;
 using SoundAndVision.API.Models.Client.Mappers;
 
-namespace SoundAndVision.API.Models.Client.Repositories
+namespace SoundAndVision.API.Models.Client.Services
 {
-    public class ArtistRepository : IArtistRepository<Artist>
+    public class ArtistService : IArtistRepository<Artist>
     {
-        private IArtistRepository<GE.Artist> _artistRepositoryGlobal;
+        private IArtistRepository<GE.Artist> _artistRepository;
 
-        public ArtistRepository(IArtistRepository<GE.Artist> artistRepositoryGlobal)
+        public ArtistService(IArtistRepository<GE.Artist> artistRepository)
         {
-            _artistRepositoryGlobal = artistRepositoryGlobal;
+            _artistRepository = artistRepository;
         }
 
         public bool Add(Artist artist)
         {
             try
             {
-                return _artistRepositoryGlobal.Add(artist.ToArtistGlobal());
+                return _artistRepository.Add(artist.ToArtistGlobal());
             }
             catch (Exception ex)
             {

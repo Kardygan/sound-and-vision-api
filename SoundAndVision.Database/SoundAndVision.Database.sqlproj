@@ -118,6 +118,10 @@
     <Build Include="Programmability\Stored Procedures\AlbumGenre\SSP_GetAlbumGenreById.sql" />
     <Build Include="Programmability\Stored Procedures\AlbumArtist\SSP_GetAlbumArtistById.sql" />
     <Build Include="Programmability\Stored Procedures\Track\SSP_GetAlbumTrackById.sql" />
+    <Build Include="Programmability\Stored Procedures\Album\SSP_GetAllAlbum.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumArtist\SSP_GetAllAlbumArtist.sql" />
+    <Build Include="Programmability\Stored Procedures\AlbumGenre\SSP_GetAllAlbumGenre.sql" />
+    <Build Include="Programmability\Stored Procedures\Track\SSP_GetAllAlbumTrack.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />

@@ -8,9 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using GE = SoundAndVision.API.Models.Global.Entities;
-using GR = SoundAndVision.API.Models.Global.Repositories;
+using SoundAndVision.API.Models.Global.Repositories;
 using CE = SoundAndVision.API.Models.Client.Entities;
-using CR = SoundAndVision.API.Models.Client.Repositories;
+using SoundAndVision.API.Models.Client.Services;
 using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -54,11 +54,17 @@ namespace SoundAndVision.API
 
             services.AddSingleton<IImageUploader, ImageUploader>();
 
-            services.AddSingleton<IUserAuthenticationRepository<GE.User>, GR.UserAuthenticationRepository>();
-            services.AddSingleton<IUserAuthenticationRepository<CE.User>, CR.UserAuthenticationRepository>();
+            // Authentication.
+            services.AddSingleton<IUserAuthenticationRepository<GE.User>, UserAuthenticationRepository>();
+            services.AddSingleton<IUserAuthenticationRepository<CE.User>, UserAuthenticationService>();
 
-            services.AddSingleton<IUserRepository<GE.User>, GR.UserRepository>();
-            services.AddSingleton<IUserRepository<CE.User>, CR.UserRepository>();
+            // User.
+            services.AddSingleton<IUserRepository<GE.User>, UserRepository>();
+            services.AddSingleton<IUserRepository<CE.User>, UserService>();
+
+            // Album.
+            services.AddSingleton<IAlbumRepository<GE.Album, GE.AlbumFull>, AlbumRepository>();
+            services.AddSingleton<IAlbumRepository<CE.Album, CE.AlbumFull>, AlbumService>();
 
             // Roles.
             services.AddAuthorization(options =>

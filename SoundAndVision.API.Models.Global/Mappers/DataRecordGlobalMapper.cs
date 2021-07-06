@@ -29,22 +29,8 @@ namespace SoundAndVision.API.Models.Global.Mappers
         }
 
         // Artist.
-        internal static Artist ToArtistGlobal(this IDataRecord dataRecord, bool isAlbumRelated = false)
+        internal static Artist ToArtistGlobal(this IDataRecord dataRecord)
         {
-            if (isAlbumRelated)
-            {
-                return new Artist()
-                {
-                    Id = (int)dataRecord["ArtistId"],
-                    Name = (string)dataRecord["ArtistName"],
-                    Picture = (string)dataRecord["ArtistPicture"],
-                    Alias = (dataRecord["ArtistAlias"] is DBNull) ? null : (string)dataRecord["ArtistAlias"],
-                    StartDate = (DateTime)dataRecord["ArtistStartDate"],
-                    EndDate = (dataRecord["ArtistEndDate"] is DBNull) ? (DateTime?)null : (DateTime)dataRecord["ArtistEndDate"],
-                    Description = (dataRecord["ArtistDescription"] is DBNull) ? null : (string)dataRecord["ArtistDescription"]
-                };
-            }
-
             return new Artist()
             {
                 Id = (int)dataRecord["Id"],
@@ -57,10 +43,39 @@ namespace SoundAndVision.API.Models.Global.Mappers
             };
         }
 
-        // Album.
-        internal static Album ToAlbumGlobal(this IDataRecord dataRecord)
+        internal static Artist ToAlbumArtistGlobal(this IDataRecord dataRecord)
         {
-            return new Album()
+            return new Artist()
+            {
+                Id = (int)dataRecord["ArtistId"],
+                Name = (string)dataRecord["ArtistName"],
+                Picture = (string)dataRecord["ArtistPicture"],
+                Alias = (dataRecord["ArtistAlias"] is DBNull) ? null : (string)dataRecord["ArtistAlias"],
+                StartDate = (DateTime)dataRecord["ArtistStartDate"],
+                EndDate = (dataRecord["ArtistEndDate"] is DBNull) ? (DateTime?)null : (DateTime)dataRecord["ArtistEndDate"],
+                Description = (dataRecord["ArtistDescription"] is DBNull) ? null : (string)dataRecord["ArtistDescription"]
+            };
+        }
+
+        internal static ArtistFull ToAlbumArtistFullGlobal(this IDataRecord dataRecord)
+        {
+            return new ArtistFull()
+            {
+                Id = (int)dataRecord["ArtistId"],
+                Name = (string)dataRecord["ArtistName"],
+                Picture = (string)dataRecord["ArtistPicture"],
+                Alias = (dataRecord["ArtistAlias"] is DBNull) ? null : (string)dataRecord["ArtistAlias"],
+                StartDate = (DateTime)dataRecord["ArtistStartDate"],
+                EndDate = (dataRecord["ArtistEndDate"] is DBNull) ? (DateTime?)null : (DateTime)dataRecord["ArtistEndDate"],
+                Description = (dataRecord["ArtistDescription"] is DBNull) ? null : (string)dataRecord["ArtistDescription"],
+                AlbumId = (int)dataRecord["Id"]
+            };
+        }
+
+        // Album.
+        internal static AlbumFull ToAlbumFullGlobal(this IDataRecord dataRecord)
+        {
+            return new AlbumFull()
             {
                 Id = (int)dataRecord["Id"],
                 Name = (string)dataRecord["Name"],
@@ -73,7 +88,7 @@ namespace SoundAndVision.API.Models.Global.Mappers
                     Name = (string)dataRecord["LabelName"],
                     Picture = (string)dataRecord["LabelPicture"],
                     Location = (string)dataRecord["LabelLocation"],
-                    FoudationYear = (short)dataRecord["LabelFoudationYear"]
+                    FoundationYear = (short)dataRecord["LabelFoundationYear"]
                 },
                 AlbumType = new AlbumType()
                 {
@@ -92,7 +107,7 @@ namespace SoundAndVision.API.Models.Global.Mappers
                 Name = (string)dataRecord["Name"],
                 Picture = (string)dataRecord["Picture"],
                 Location = (string)dataRecord["Location"],
-                FoudationYear = (short)dataRecord["FoudationYear"]
+                FoundationYear = (short)dataRecord["FoudationYear"]
             };
         }
 
@@ -107,17 +122,8 @@ namespace SoundAndVision.API.Models.Global.Mappers
         }
 
         // Genre.
-        internal static Genre ToGenreGlobal(this IDataRecord dataRecord, bool isAlbumRelated = false)
+        internal static Genre ToGenreGlobal(this IDataRecord dataRecord)
         {
-            if (isAlbumRelated)
-            {
-                return new Genre()
-                {
-                    Id = (int)dataRecord["GenreId"],
-                    Name = (string)dataRecord["GenreName"]
-                };
-            }
-
             return new Genre()
             {
                 Id = (int)dataRecord["Id"],
@@ -125,15 +131,45 @@ namespace SoundAndVision.API.Models.Global.Mappers
             };
         }
 
+        internal static Genre ToAlbumGenreGlobal(this IDataRecord dataRecord)
+        {
+            return new Genre()
+            {
+                Id = (int)dataRecord["GenreId"],
+                Name = (string)dataRecord["GenreName"]
+            };
+        }
+
+        internal static GenreFull ToAlbumGenreFullGlobal(this IDataRecord dataRecord)
+        {
+            return new GenreFull()
+            {
+                Id = (int)dataRecord["GenreId"],
+                Name = (string)dataRecord["GenreName"],
+                AlbumId = (int)dataRecord["Id"],
+            };
+        }
+
         // Track.
-        internal static Track ToTrackGlobal(this IDataRecord dataRecord)
+        internal static Track ToAlbumTrackGlobal(this IDataRecord dataRecord)
         {
             return new Track()
             {
                 Id = (int)dataRecord["TrackId"],
                 Num = (string)dataRecord["TrackNum"],
                 Name = (string)dataRecord["TrackName"],
-                Duration = (short)dataRecord["TrackDuration"],
+                Duration = (dataRecord["TrackDuration"] is DBNull) ? (short?)null : (short)dataRecord["TrackDuration"]
+            };
+        }
+
+        internal static TrackFull ToAlbumTrackFullGlobal(this IDataRecord dataRecord)
+        {
+            return new TrackFull()
+            {
+                Id = (int)dataRecord["TrackId"],
+                Num = (string)dataRecord["TrackNum"],
+                Name = (string)dataRecord["TrackName"],
+                Duration = (dataRecord["TrackDuration"] is DBNull) ? (short?)null : (short)dataRecord["TrackDuration"],
                 AlbumId = (int)dataRecord["Id"]
             };
         }

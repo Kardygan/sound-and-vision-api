@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SoundAndVision.API.Repositories.Interfaces
 {
-    public interface IAlbumRepository<TAlbum>
+    public interface IAlbumRepository<TAlbum, TAlbumFull>
     {
         bool Add(TAlbum album);
-        IEnumerable<TAlbum> Get();
-        TAlbum Get(int id);
+        IEnumerable<TAlbumFull> Get();
+        TAlbumFull Get(int id);
         bool Edit(int id, TAlbum album);
         bool Remove(int id);
     }

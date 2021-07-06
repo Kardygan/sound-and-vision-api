@@ -3,6 +3,7 @@ using SoundAndVision.API.Models.Global.Mappers;
 using SoundAndVision.API.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using Tools.Connection.Database;
@@ -32,9 +33,13 @@ namespace SoundAndVision.API.Models.Global.Repositories
 
                 return _connection.ExecuteReader(command, userData => userData.ToUserGlobal()).SingleOrDefault();
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(sex.Message);
+            }
+            catch (Exception)
+            {
+                throw new Exception("User doesn't exist!");
             }
         }
 
@@ -46,9 +51,13 @@ namespace SoundAndVision.API.Models.Global.Repositories
 
                 return _connection.ExecuteReader(command, userData => userData.ToUserGlobal());
             }
-            catch (Exception ex)
+            catch (SqlException sex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception(sex.Message);
+            }
+            catch (Exception)
+            {
+                throw new Exception("Something went wrong!");
             }
         }
 

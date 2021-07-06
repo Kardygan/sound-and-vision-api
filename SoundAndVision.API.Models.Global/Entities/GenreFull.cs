@@ -4,12 +4,10 @@ using System.Text;
 
 namespace SoundAndVision.API.Models.Global.Entities
 {
-    public class Label
+    public class GenreFull
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Picture { get; set; }
-        public string Location { get; set; }
-        public short FoundationYear { get; set; }
+        public int AlbumId { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Tools.Connection.Database;
 
 namespace SoundAndVision.API.Models.Global.Repositories
 {
-    public class AlbumRepository : IAlbumRepository<Album>
+    public class AlbumRepository : IAlbumRepository<Album, AlbumFull>
     {
         private Connection _connection;
 
@@ -28,12 +28,28 @@ namespace SoundAndVision.API.Models.Global.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Album> Get()
+        public IEnumerable<AlbumFull> Get()
         {
-            throw new NotImplementedException();
+            try
+            {
+                Command commandAlbums = new Command("SSP_GetAllAlbum", true);
+                IEnumerable<int> ids = _connection.ExecuteReader(commandAlbums, albumData => (int)albumData["Id"]);
+
+                List<AlbumFull> albums = new List<AlbumFull>();
+                foreach (int id in ids)
+                {
+                    albums.Add(Get(id));
+                }
+
+                return albums;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        public Album Get(int id)
+        public AlbumFull Get(int id)
         {
             try
             {
@@ -49,10 +65,10 @@ namespace SoundAndVision.API.Models.Global.Repositories
                 Command commandAlbumTracks = new Command("SSP_GetAlbumTrackById", true);
                 commandAlbumTracks.AddParameter("@Id", id);
 
-                Album album = _connection.ExecuteReader(commandAlbum, albumData => albumData.ToAlbumGlobal()).SingleOrDefault();
-                album.Artists = _connection.ExecuteReader(commandAlbumArtists, albumArtistsData => albumArtistsData.ToArtistGlobal(true));
-                album.Genres = _connection.ExecuteReader(commandAlbumGenres, albumGenresData => albumGenresData.ToGenreGlobal(true));
-                album.Tracks = _connection.ExecuteReader(commandAlbumTracks, albumTracksData => albumTracksData.ToTrackGlobal());
+                AlbumFull album = _connection.ExecuteReader(commandAlbum, albumData => albumData.ToAlbumFullGlobal()).SingleOrDefault();
+                album.Artists = _connection.ExecuteReader(commandAlbumArtists, albumArtistsData => albumArtistsData.ToAlbumArtistGlobal());
+                album.Genres = _connection.ExecuteReader(commandAlbumGenres, albumGenresData => albumGenresData.ToAlbumGenreGlobal());
+                album.Tracks = _connection.ExecuteReader(commandAlbumTracks, albumTracksData => albumTracksData.ToAlbumTrackGlobal());
 
                 return album;
             }
