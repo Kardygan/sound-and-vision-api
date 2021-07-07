@@ -12,34 +12,30 @@ namespace SoundAndVision.API.Infrastructure.Tools
     {
         public string MakeImagePath(string imageName, string imageFolder)
         {
-            string mainFolder = "Uploads";
+            string mainFolder = "Uploads/";
             if (!Directory.Exists(mainFolder))
                 Directory.CreateDirectory(mainFolder);
 
-            string folderPath = Path.Combine(Directory.GetCurrentDirectory(), mainFolder, "/", imageFolder);
+            string folderPath = Path.Combine(mainFolder, imageFolder);
             if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
+            folderPath = folderPath + "/";
 
             string fileName = DateTime.Now.Millisecond + imageName;
 
-            return Path.Combine(folderPath, "/", fileName);
+            return Path.Combine(folderPath, fileName);
         }
 
-        public async Task<string> UploadImage(IFormFile file, ImageFolder imageFolder)
+        public async Task<string> UploadImage(HttpRequest req, ImageFolder imageFolder)
         {
-            if (file != null)
+            string imagePath = MakeImagePath(req.Form.Files[0].FileName, imageFolder.ToString());
+
+            using (FileStream fs = new FileStream(imagePath, FileMode.Create))
             {
-                string imagePath = MakeImagePath(file.FileName, imageFolder.ToString());
-
-                using (FileStream fs = new FileStream(imagePath, FileMode.Create))
-                {
-                    await file.CopyToAsync(fs);
-                }
-
-                return imagePath;
+                await req.Form.Files[0].CopyToAsync(fs);
             }
 
-            return null;
+            return imagePath;
         }
     }
 }

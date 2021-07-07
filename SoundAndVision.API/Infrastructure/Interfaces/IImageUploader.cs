@@ -16,7 +16,7 @@ namespace SoundAndVision.API.Infrastructure.Interfaces
 
     public interface IImageUploader
     {
-        Task<string> UploadImage(IFormFile file, ImageFolder imageFolder);
+        Task<string> UploadImage(HttpRequest req, ImageFolder imageFolder);
         string MakeImagePath(string imageName, string imageFolder);
     }
 }

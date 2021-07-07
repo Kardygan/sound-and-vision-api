@@ -56,18 +56,18 @@ namespace SoundAndVision.API.Controllers
 
         [AllowAnonymous]
         [HttpPost()]
-        public IActionResult Register([FromBody] ArtistAddForm artistAddForm)
+        public IActionResult Add([FromBody] ArtistAddForm artistAddForm)
         {
             if ((artistAddForm is null) || !ModelState.IsValid)
                 throw new ArgumentException("Form is null or doesn't respect requirements!");
 
             try
             {
-                HttpRequest request = HttpContext.Request;
-                //IFormFile file = request.Form.Files[0];
-                IFormFile file = null;
+                //HttpRequest request = HttpContext.Request;
+                ////IFormFile file = request.Form.Files[0];
+                //IFormFile file = null;
 
-                artistAddForm.Picture = _imageUploader.UploadImage(file, ImageFolder.Avatars).Result;
+                //artistAddForm.Picture = _imageUploader.UploadImage(file, ImageFolder.Artists).Result;
 
                 Artist artist = new Artist(artistAddForm.Name, artistAddForm.Picture, artistAddForm.Alias, artistAddForm.StartDate, artistAddForm.EndDate, artistAddForm.Description);
 
@@ -81,6 +81,14 @@ namespace SoundAndVision.API.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [AllowAnonymous]
+        [HttpPost("upfile")]
+        public async Task<IActionResult> PostImg()
+        {
+           string url = await _imageUploader.UploadImage(HttpContext.Request, ImageFolder.Artists);
+            return this.StatusCode(200, url);
         }
     }
 }

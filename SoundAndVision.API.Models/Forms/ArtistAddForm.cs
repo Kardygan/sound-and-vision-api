@@ -10,7 +10,6 @@ namespace SoundAndVision.API.Models.Forms
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
-        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$")]
         public string Picture { get; set; }
         [StringLength(300)]
         public string Alias { get; set; }

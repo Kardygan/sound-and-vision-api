@@ -34,11 +34,11 @@ namespace SoundAndVision.API.Controllers
 
             try
             {
-                HttpRequest request = HttpContext.Request;
-                //IFormFile file = request.Form.Files[0];
-                IFormFile file = null;
+                //HttpRequest request = HttpContext.Request;
+                ////IFormFile file = request.Form.Files[0];
+                //IFormFile file = null;
 
-                userRegisterForm.Picture = _imageUploader.UploadImage(file, ImageFolder.Avatars).Result;
+                //userRegisterForm.Picture = _imageUploader.UploadImage(file, ImageFolder.Avatars).Result;
 
                 User user = new User(userRegisterForm.Username, userRegisterForm.FirstName, userRegisterForm.LastName, userRegisterForm.Email, userRegisterForm.Password, userRegisterForm.Picture, userRegisterForm.Location, userRegisterForm.Bio);
 
